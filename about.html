@@ -1,0 +1,897 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us | RKN Associates — Two Decades of Stainless Steel Craftsmanship</title>
+<meta name="description" content="RKN Associates — founded 2005 in Triplicane, Chennai. 20+ years of stainless steel fabrication. Meet the team behind 100+ projects and 4 government awards.">
+<link rel="canonical" href="https://rknassociates.com/about">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/shared.css">
+
+<style>
+/* ========= STORY SECTION ========= */
+.story-section {
+  background: var(--ivory);
+  padding: var(--section-pad-y) 8%;
+  position: relative;
+  overflow: hidden;
+}
+.story-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+.story-img-col {
+  position: sticky;
+  top: 120px;
+}
+.story-img-frame {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+}
+.story-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1.2s;
+}
+.story-img-frame:hover img { transform: scale(1.04); }
+.story-since-stamp {
+  position: absolute;
+  bottom: -30px;
+  right: -30px;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  background: var(--gold);
+  color: var(--dark);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-lg);
+  border: 4px solid var(--ivory);
+}
+.story-since-stamp .lbl {
+  font-size: 0.6rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+html[lang="ta"] .story-since-stamp .lbl {
+  font-size: 0.75rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.story-since-stamp .year {
+  font-family: var(--ff-display);
+  font-size: 2.6rem;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.story-text-col {
+  padding: 12px 0;
+}
+.story-text-col .section-title {
+  margin-bottom: 32px;
+}
+.story-text-col p {
+  font-size: 0.96rem;
+  color: var(--text-mid);
+  line-height: 1.9;
+  margin-bottom: 22px;
+  font-weight: 300;
+}
+.story-pullquote {
+  margin: 36px 0;
+  padding: 28px 32px;
+  border-left: 3px solid var(--gold);
+  background: rgba(201, 168, 76, 0.05);
+  font-family: var(--ff-display);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--text);
+  line-height: 1.55;
+  font-weight: 500;
+}
+html[lang="ta"] .story-pullquote { font-family: var(--ff-tamil); font-style: normal; font-weight: 500; }
+
+/* ========= TEAM ========= */
+.team-section {
+  background: var(--ivory-dark);
+  padding: var(--section-pad-y) 8%;
+  position: relative;
+}
+.team-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+}
+.team-header {
+  text-align: center;
+  max-width: 720px;
+  margin: 0 auto 72px;
+}
+.team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.team-card {
+  background: var(--ivory);
+  padding: 44px 32px;
+  text-align: center;
+  position: relative;
+  border: 1px solid var(--border-light);
+  transition: all 0.4s;
+}
+.team-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-4px);
+  border-color: var(--gold);
+}
+.team-portrait {
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--dark);
+  font-family: var(--ff-display);
+  font-size: 3.6rem;
+  font-weight: 700;
+  position: relative;
+  box-shadow: 0 8px 24px rgba(201, 168, 76, 0.25);
+}
+.team-portrait::before {
+  content: '';
+  position: absolute;
+  inset: -6px;
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  opacity: 0.3;
+}
+.team-name {
+  font-family: var(--ff-display);
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 4px;
+  letter-spacing: -0.01em;
+}
+.team-role {
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold-deep);
+  font-weight: 600;
+  margin-bottom: 18px;
+}
+html[lang="ta"] .team-role {
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  text-transform: none;
+}
+.team-desc {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  font-weight: 300;
+  margin-bottom: 20px;
+}
+.team-badge {
+  display: inline-block;
+  padding: 6px 16px;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid var(--border);
+  color: var(--gold-deep);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+}
+html[lang="ta"] .team-badge {
+  font-size: 0.82rem;
+  letter-spacing: 0.03em;
+  text-transform: none;
+}
+
+/* ========= AWARDS ========= */
+.awards-section {
+  background: var(--ivory);
+  padding: var(--section-pad-y) 8%;
+  position: relative;
+  overflow: hidden;
+}
+.awards-section::before {
+  content: 'AWARDS';
+  position: absolute;
+  top: 40px;
+  right: -30px;
+  font-family: var(--ff-display);
+  font-size: 14rem;
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  color: transparent;
+  -webkit-text-stroke: 1px rgba(201, 168, 76, 0.08);
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.awards-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.awards-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 72px;
+}
+.awards-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+.award-card {
+  background: white;
+  padding: 40px 32px;
+  position: relative;
+  border: 1px solid var(--border-light);
+  transition: all 0.4s;
+  display: flex;
+  flex-direction: column;
+}
+.award-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--gold);
+  transform: translateY(-4px);
+}
+.award-medal {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 20px;
+  position: relative;
+}
+.award-medal svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: var(--gold-deep);
+  stroke-width: 1.5;
+}
+.award-year {
+  position: absolute;
+  top: 18px;
+  right: 24px;
+  font-family: var(--ff-display);
+  font-size: 3.6rem;
+  font-weight: 700;
+  color: transparent;
+  -webkit-text-stroke: 1px var(--border-strong);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.award-name {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--text);
+  margin-bottom: 8px;
+  line-height: 1.2;
+}
+.award-body {
+  font-size: 0.78rem;
+  color: var(--gold-deep);
+  font-weight: 600;
+  margin-bottom: 18px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+html[lang="ta"] .award-body { font-style: normal; }
+.award-detail {
+  font-size: 0.84rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  font-weight: 300;
+  flex: 1;
+}
+.award-divider {
+  width: 40px;
+  height: 1px;
+  background: var(--gold);
+  margin-bottom: 18px;
+}
+
+/* ========= TIMELINE ========= */
+.timeline-section {
+  background: var(--dark);
+  padding: var(--section-pad-y) 8%;
+  position: relative;
+  overflow: hidden;
+}
+.timeline-section::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 40% at 20% 30%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 60% at 85% 70%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+}
+.timeline-inner {
+  max-width: var(--container);
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+.timeline-header {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 72px;
+}
+.timeline {
+  position: relative;
+  padding-left: 48px;
+  border-left: 1px solid rgba(201, 168, 76, 0.3);
+  max-width: 800px;
+  margin: 0 auto;
+}
+.tl-item {
+  position: relative;
+  padding-bottom: 52px;
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-item::before {
+  content: '';
+  position: absolute;
+  left: -55px;
+  top: 8px;
+  width: 14px;
+  height: 14px;
+  background: var(--gold);
+  border-radius: 50%;
+  box-shadow: 0 0 0 4px rgba(201, 168, 76, 0.2);
+}
+.tl-year {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.04em;
+  margin-bottom: 6px;
+}
+.tl-title {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--ivory);
+  margin-bottom: 8px;
+  line-height: 1.25;
+}
+.tl-desc {
+  font-size: 0.88rem;
+  color: rgba(245, 240, 232, 0.6);
+  line-height: 1.8;
+  font-weight: 300;
+  max-width: 580px;
+}
+
+/* ========= CTA ========= */
+.about-cta {
+  background: var(--ivory-light);
+  padding: 96px 8%;
+  text-align: center;
+}
+.about-cta-inner {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.about-cta h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--text);
+}
+.about-cta p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.8;
+  margin-bottom: 32px;
+  font-weight: 300;
+}
+.about-cta .btn-row {
+  display: flex;
+  gap: 14px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* ========= MOBILE ========= */
+@media (max-width: 960px) {
+  .story-inner { grid-template-columns: 1fr; gap: 48px; }
+  .story-img-col { position: static; max-width: 500px; margin: 0 auto; width: 100%; }
+  .team-grid, .awards-grid { grid-template-columns: 1fr; gap: 20px; }
+  .team-card, .award-card { max-width: 500px; margin: 0 auto; width: 100%; }
+}
+@media (max-width: 520px) {
+  .award-year { font-size: 2.6rem; }
+  .award-name { font-size: 1.2rem; }
+  .story-since-stamp { width: 110px; height: 110px; bottom: -20px; right: -20px; }
+  .story-since-stamp .year { font-size: 2rem; }
+  .timeline { padding-left: 32px; }
+  .tl-item::before { left: -39px; width: 10px; height: 10px; }
+  .tl-title { font-size: 1.2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- PRELOADER -->
+<div id="preloader">
+  <img class="pre-logo" data-img="logo" alt="RKN Associates">
+  <div class="pre-name">RKN Associates</div>
+  <div class="pre-tag" data-i18n="pre_tag">Stainless Steel Craftsmanship · Since 2005</div>
+  <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+</div>
+
+<!-- NAV -->
+<nav class="rkn-nav">
+  <a href="/home" class="nav-logo">
+    <img class="nav-logo-img" data-img="logo" alt="RKN Associates">
+    <div class="nav-brand">
+      <span class="nav-brand-name">RKN Associates</span>
+      <span class="nav-brand-tag" data-i18n="hero_subtitle">Stainless Steel · Since 2005</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/home" data-i18n="nav_home">Home</a>
+    <a href="/about" class="active" data-i18n="nav_about">About</a>
+    <a href="/services" data-i18n="nav_services">Services</a>
+    <a href="/interior.html" data-i18n="nav_interior">Interiors</a>
+    <a href="/projects" data-i18n="nav_projects">Projects</a>
+    <a href="/contact" data-i18n="nav_contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+919489486081" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      +91 94894 86081
+    </a>
+    <div class="lang-toggle">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="ta">தமி</button>
+    </div>
+    <a href="/contact" class="nav-cta" data-i18n="nav_cta">Get a Quote</a>
+    <div class="nav-hamburger" id="hamb">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-close">✕</div>
+  <a href="/home" data-i18n="nav_home">Home</a>
+  <a href="/about" data-i18n="nav_about">About</a>
+  <a href="/services" data-i18n="nav_services">Services</a>
+  <a href="/interior.html" data-i18n="nav_interior">Interiors</a>
+  <a href="/projects" data-i18n="nav_projects">Projects</a>
+  <a href="/contact" data-i18n="nav_contact">Contact</a>
+  <div class="mobile-menu-extras">
+    <div class="lang-toggle">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
+</div>
+
+<!-- PAGE HERO -->
+<!-- ========== ABOUT HERO v5 · MUSEUM PHOTO REVEAL ========== -->
+<section class="about-hero-new" id="aboutHeroV5">
+  <div class="ahn-bg-layer" data-bg-img="about_hero_bg" aria-hidden="true"></div>
+  <div class="ahn-bg-overlay" aria-hidden="true"></div>
+  <div class="ahn-particles" aria-hidden="true">
+    <span></span><span></span><span></span><span></span><span></span><span></span>
+    <span></span><span></span><span></span>
+  </div>
+  <div class="ahn-content">
+    <div class="ahn-breadcrumb" data-i18n="about_breadcrumb">Home · About</div>
+    <h1 class="ahn-title ahn-shimmer-title">
+      <span data-i18n="about_hero_title_1">Built on</span>
+      <br>
+      <em data-i18n="about_hero_title_2">Craftsmanship, Trust &amp; Growth.</em>
+    </h1>
+    <p class="ahn-sub" data-i18n="about_hero_sub">Two decades. Three generations of care. One uncompromising standard.</p>
+    <div class="ahn-divider"></div>
+    <div class="ahn-tag" data-i18n="about_hero_tag">Twenty years ago, in a small workshop in Triplicane.</div>
+  </div>
+</section>
+
+<!-- OUR STORY -->
+<section class="story-section">
+  <div class="story-inner">
+    <div class="story-img-col reveal">
+      <div class="story-img-frame">
+        <img data-img="award_story" alt="RKN Associates — Award ceremony">
+        <div class="story-since-stamp">
+          <div class="lbl" data-i18n="about_since">Since</div>
+          <div class="year" data-i18n="about_since_year">2005</div>
+        </div>
+      </div>
+    </div>
+    <div class="story-text-col reveal d1">
+      <div class="section-label" data-i18n="about_story_label">Our Story</div>
+      <h2 class="section-title">
+        <span data-i18n="about_story_title_1">A Journey Built on</span><br>
+        <em data-i18n="about_story_title_2">Craftsmanship, Trust &amp; Growth</em>
+      </h2>
+      <p data-i18n="about_story_p1">RKN Associates began its journey in 2005 with a simple vision — to deliver strong, reliable, and high-quality work that people can trust. What started as a focused stainless steel fabrication concern has grown into a recognised name across Tamil Nadu.</p>
+      <p data-i18n="about_story_p2">Our first project was at New Bharathi Raja Hospital, T.Nagar — a milestone that set the standard for everything that followed. From that first installation, we built relationships with leading architects, engineers, and builders who trusted us to bring their visions to life.</p>
+      <p data-i18n="about_story_p3">Over the years, we have worked on hospitals, star hotels, celebrity homes, government institutions, showrooms, and landmark commercial spaces. We introduced the Color Diamond Model in Tamil Nadu — a design innovation that the industry has yet to replicate.</p>
+      <div class="story-pullquote" data-i18n="about_story_pullquote">"From humble beginnings to a trusted name — our journey is built on quality and consistency."</div>
+      <p data-i18n="about_story_p4">Today, RKN Associates stands as a symbol of trust, combining experience with innovation to deliver work that stands — literally and figuratively — for decades.</p>
+    </div>
+  </div>
+</section>
+
+<!-- LEADERSHIP v5 — 3 photo cards, order: Founder → Co-Founder → CEO -->
+<section class="leadership-new">
+  <div class="leadership-header reveal">
+    <div class="section-label center" data-i18n="leadership_label">Leadership</div>
+    <h2 class="section-title center">
+      <span data-i18n="leadership_title_1">The People</span> <em data-i18n="leadership_title_2">Behind the Work.</em>
+    </h2>
+    <p class="section-sub center" data-i18n="leadership_desc" style="margin-top: 18px;">RKN is a family business, now in its second generation. Each member brings a distinct skill to the work — craftsmanship, operations, and strategic growth.</p>
+  </div>
+
+  <div class="leadership-grid">
+
+    <!-- 1. Founder -->
+    <div class="leader-card reveal">
+      <div class="leader-photo-wrap">
+        <img data-img="lead_hussain" alt="S.S.M. Hussain Sahib — Founder">
+        <div class="leader-photo-frame"></div>
+      </div>
+      <div class="leader-body">
+        <h3 class="leader-name" data-i18n="team_m1_name">S.S.M. Hussain Sahib</h3>
+        <div class="leader-role" data-i18n="team_m1_role">Founder &amp; Proprietor</div>
+        <p class="leader-bio" data-i18n="team_m1_desc">The visionary who built RKN from the ground up. With 20+ years of hands-on project execution expertise, he has been the backbone of every project delivered since 2005. His focus on quality workmanship, modern design, and customer satisfaction has built RKN into a trusted name across Tamil Nadu.</p>
+        <div class="leader-cred">
+          <span class="leader-cred-chip" data-i18n="team_m1_cred">B.A., M.B.A</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 2. Co-Founder (moved to position 2 per user direction) -->
+    <div class="leader-card reveal d1">
+      <div class="leader-photo-wrap">
+        <img data-img="lead_hasan" alt="Syed Hasan Kuddos Sahib — Co-Founder">
+        <div class="leader-photo-frame"></div>
+      </div>
+      <div class="leader-body">
+        <h3 class="leader-name" data-i18n="team_m3_name">Syed Hasan Kuddos Sahib</h3>
+        <div class="leader-role" data-i18n="team_m3_role">Co-Founder &amp; Director of Strategy and Finance</div>
+        <p class="leader-bio" data-i18n="team_m3_desc">Leads brand strategy, finance, and long-term business direction. Drives RKN's digital transformation, positioning the firm as a leading name for premium stainless steel craftsmanship across Tamil Nadu.</p>
+        <div class="leader-cred">
+          <span class="leader-cred-chip" data-i18n="team_m3_cred">BBA (Finance), LLB (Honours)</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. CEO -->
+    <div class="leader-card reveal d2">
+      <div class="leader-photo-wrap">
+        <img data-img="lead_hidhayaa" alt="Hidhayaa — CEO">
+        <div class="leader-photo-frame"></div>
+      </div>
+      <div class="leader-body">
+        <h3 class="leader-name" data-i18n="team_m2_name">Hidhayaa</h3>
+        <div class="leader-role" data-i18n="team_m2_role">Chief Executive Officer</div>
+        <p class="leader-bio" data-i18n="team_m2_desc">Leads daily operations, client management, and project delivery. Brings fresh vision and modern thinking to take RKN Associates to a wider audience across Tamil Nadu — combining traditional business values with new-age strategies.</p>
+        <div class="leader-cred">
+          <span class="leader-cred-chip" data-i18n="team_m2_cred">BBA</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- RECOGNITION v5 — 2×2 grid, 4 cards (3 with photos, Viswa Jothi text-only) -->
+<section class="recognition-new" id="awards">
+  <div class="recognition-header reveal">
+    <div class="section-label center" data-i18n="awards_label">Recognition</div>
+    <h2 class="section-title center">
+      <span data-i18n="awards_title_1">Government-Recognised</span><br>
+      <em data-i18n="awards_title_2">for Quality &amp; Service.</em>
+    </h2>
+    <p class="section-sub center" data-i18n="awards_desc" style="margin-top: 18px;">Over the years, RKN Associates has been honoured with multiple state awards recognising our commitment to material quality, workmanship, and service delivery.</p>
+    <div class="recognition-count-line" data-i18n="recognition_count_label">Four state recognitions. Two decades. One standard.</div>
+  </div>
+
+  <div class="awards-grid-new">
+
+    <!-- 1. Star Achiever 2009 -->
+    <div class="award-card-new reveal">
+      <div class="award-card-photo">
+        <img data-img="award_2009" alt="Star Achiever Award 2009">
+        <div class="award-card-year-badge" data-i18n="award_1_year">2009</div>
+      </div>
+      <div class="award-card-body">
+        <div class="award-card-body-year-bg">2009</div>
+        <div class="award-ribbon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="20" r="12"/><path d="M16 30l-4 14 12-6 12 6-4-14"/><path d="M18 20h12M24 14v12"/></svg>
+        </div>
+        <h3 class="award-card-name" data-i18n="award_1_name">Star Achiever Award</h3>
+        <div class="award-card-body-sub" data-i18n="award_1_body">"Sangamam 2009", Government of Tamil Nadu</div>
+        <div class="award-card-divider"></div>
+        <p class="award-card-detail" data-i18n="award_1_detail">Awarded with Gold Medal by Mr. Nadarajan, Ex-Chief Justice, High Court of Chennai, at German Hall, T.Nagar on 21 February 2009. Recognition of consistent quality and service by the State Human Rights Vigilance Organisation.</p>
+      </div>
+    </div>
+
+    <!-- 2. Bharat Ratna Dr. MGR 2010 -->
+    <div class="award-card-new reveal d1">
+      <div class="award-card-photo">
+        <img data-img="award_2010" alt="Bharat Ratna Dr. MGR Award 2010">
+        <div class="award-card-year-badge" data-i18n="award_2_year">2010</div>
+      </div>
+      <div class="award-card-body">
+        <div class="award-card-body-year-bg">2010</div>
+        <div class="award-ribbon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="20" r="12"/><path d="M16 30l-4 14 12-6 12 6-4-14"/><path d="M18 20h12M24 14v12"/></svg>
+        </div>
+        <h3 class="award-card-name" data-i18n="award_2_name">Bharat Ratna Dr. MGR Award</h3>
+        <div class="award-card-body-sub" data-i18n="award_2_body">"The Peaks 2010", Government of Tamil Nadu</div>
+        <div class="award-card-divider"></div>
+        <p class="award-card-detail" data-i18n="award_2_detail">Presented by the State Human Rights Vigilance Organisation, Government of Tamil Nadu, at German Hall, T.Nagar, Chennai, for Best Quality and Service.</p>
+      </div>
+    </div>
+
+    <!-- 3. Viswa Jothi 2012 — Text-only elegant treatment -->
+    <div class="award-card-new text-only reveal d2">
+      <div class="award-card-body">
+        <div class="award-card-body-year-bg">2012</div>
+        <div class="award-ribbon">
+          <svg viewBox="0 0 80 80" fill="none" stroke="currentColor" stroke-width="1.4">
+            <circle cx="40" cy="32" r="20"/>
+            <circle cx="40" cy="32" r="14"/>
+            <path d="M40 18v28M26 32h28"/>
+            <path d="M26 46l-6 24 20-10 20 10-6-24"/>
+            <circle cx="40" cy="32" r="6" fill="currentColor" fill-opacity="0.2"/>
+          </svg>
+        </div>
+        <h3 class="award-card-name" data-i18n="award_3_name">Viswa Jothi Award</h3>
+        <div class="award-card-body-sub" data-i18n="award_3_body">"Screen Moon Awards 2011", for Best Quality and Service</div>
+        <div class="award-card-divider"></div>
+        <p class="award-card-detail" data-i18n="award_3_detail">Third consecutive state-level recognition, reaffirming RKN's standing for material integrity and dependable execution.</p>
+        <div class="award-card-note" data-i18n="award_3_note">Ceremonial photograph unavailable — the recognition endures.</div>
+      </div>
+    </div>
+
+    <!-- 4. Business Excellence 2015 -->
+    <div class="award-card-new reveal d3">
+      <div class="award-card-photo">
+        <img data-img="award_2015" alt="Business Excellence Award 2015">
+        <div class="award-card-year-badge" data-i18n="award_4_year">2015</div>
+      </div>
+      <div class="award-card-body">
+        <div class="award-card-body-year-bg">2015</div>
+        <div class="award-ribbon">
+          <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="24" cy="20" r="12"/><path d="M16 30l-4 14 12-6 12 6-4-14"/><path d="M18 20h12M24 14v12"/></svg>
+        </div>
+        <h3 class="award-card-name" data-i18n="award_4_name">Business Excellence Award</h3>
+        <div class="award-card-body-sub" data-i18n="award_4_body">State-level Recognition, 2015</div>
+        <div class="award-card-divider"></div>
+        <p class="award-card-detail" data-i18n="award_4_detail">Recognised for outstanding contributions to construction, design innovation, and business excellence in Tamil Nadu. This award acknowledges RKN Associates' consistent delivery of quality work and its pioneering role in introducing new design concepts to the stainless steel fabrication industry.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="timeline-section">
+  <div class="timeline-inner">
+    <div class="timeline-header reveal">
+      <div class="section-label ivory center" data-i18n="timeline_label">Milestones</div>
+      <h2 class="section-title ivory" data-i18n="timeline_title">Two Decades, at a Glance</h2>
+    </div>
+
+    <div class="timeline">
+      <div class="tl-item reveal">
+        <div class="tl-year">2005</div>
+        <div class="tl-title">Founded in Triplicane</div>
+        <p class="tl-desc">S.S.M. Hussain Sahib establishes RKN Associates as a stainless steel fabrication firm in Triplicane, Chennai, with a focus on quality materials and craftsmanship.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2006</div>
+        <div class="tl-title">First Landmark Project</div>
+        <p class="tl-desc">Delivered the stainless steel handrail installation at New Bharathi Raja Hospital, T.Nagar, in February 2006 — the project that set the standard for everything that followed.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2007</div>
+        <div class="tl-title">Actor Vishal's House, Anna Nagar</div>
+        <p class="tl-desc">Completed the stainless steel work at Tamil film star Vishal's residence — RKN's first celebrity installation and a showcase of the Wood-Steel Western signature model.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2009</div>
+        <div class="tl-title">Star Achiever Award</div>
+        <p class="tl-desc">First state-level recognition. Awarded at German Hall, T.Nagar, with Gold Medal for consistent quality and service by the State Human Rights Vigilance Organisation.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2010</div>
+        <div class="tl-title">Color Diamond Model Debut</div>
+        <p class="tl-desc">Introduced the Color Diamond Model at La Chocolate Patisserie, Egmore — the first installation of this signature design in Tamil Nadu. The same year, RKN received the Bharat Ratna Dr. MGR Award.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2012</div>
+        <div class="tl-title">Viswa Jothi Award — Third Consecutive Recognition</div>
+        <p class="tl-desc">Third state-level award in four years, reaffirming RKN's standing across the industry for material integrity and dependable execution.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2013</div>
+        <div class="tl-title">Dr. A.P.J. Abdul Kalam Family Residence, Pamban</div>
+        <p class="tl-desc">Selected to deliver stainless steel work at the family residence of the Missile Man of India — the project RKN holds closest to its heart.</p>
+      </div>
+
+      <div class="tl-item reveal">
+        <div class="tl-year">2026</div>
+        <div class="tl-title">Digital Relaunch & Next Chapter</div>
+        <p class="tl-desc">After two decades of quiet, word-of-mouth growth, RKN Associates launches a modern digital presence — bringing the same standard to a new generation of architects, builders, and homeowners.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="about-cta">
+  <div class="about-cta-inner">
+    <h2 data-i18n="services_cta_title">Have a project in mind?</h2>
+    <p data-i18n="services_cta_desc">Share your drawings, site details, or just an idea. We respond within 24 hours with an indicative scope and next steps.</p>
+    <div class="btn-row">
+      <a href="/contact" class="btn-gold">
+        <span data-i18n="hero_cta_primary">Get a Quote</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </a>
+      <a href="/projects" class="btn-outline-dark" data-i18n="hero_cta_secondary">View Our Work</a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER (same as index) -->
+<footer class="site-footer">
+  <div class="footer-marquee-wrap">
+    <div class="footer-marquee">
+      <div class="footer-marquee-inner">
+        <span class="fm-item" data-i18n="mq_1">Color Diamond Model</span>
+        <span class="fm-item" data-i18n="mq_2">Stainless Steel Handrails</span>
+        <span class="fm-item" data-i18n="mq_3">Glass Canopy</span>
+        <span class="fm-item" data-i18n="mq_4">Wall Cladding</span>
+        <span class="fm-item" data-i18n="mq_5">Corner Protection</span>
+        <span class="fm-item" data-i18n="mq_6">Pergola</span>
+        <span class="fm-item" data-i18n="mq_7">Safety Railing</span>
+        <span class="fm-item" data-i18n="mq_8">Spiral Staircase</span>
+      </div>
+      <div class="footer-marquee-inner" aria-hidden="true">
+        <span class="fm-item" data-i18n="mq_1">Color Diamond Model</span>
+        <span class="fm-item" data-i18n="mq_2">Stainless Steel Handrails</span>
+        <span class="fm-item" data-i18n="mq_3">Glass Canopy</span>
+        <span class="fm-item" data-i18n="mq_4">Wall Cladding</span>
+        <span class="fm-item" data-i18n="mq_5">Corner Protection</span>
+        <span class="fm-item" data-i18n="mq_6">Pergola</span>
+        <span class="fm-item" data-i18n="mq_7">Safety Railing</span>
+        <span class="fm-item" data-i18n="mq_8">Spiral Staircase</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-main">
+    <div class="footer-bg-text">RKN</div>
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" data-img="logo" alt="RKN Associates">
+          <div>
+            <div class="footer-brand-name">RKN Associates</div>
+            <div class="footer-brand-tag">Stainless Steel · Since 2005</div>
+          </div>
+        </div>
+        <p class="footer-desc" data-i18n="footer_desc">Premium stainless steel craftsmanship from Chennai, serving Tamil Nadu since 2005.</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_explore">Explore</div>
+        <ul class="footer-links">
+          <li><a href="/home" data-i18n="nav_home">Home</a></li>
+          <li><a href="/about" data-i18n="nav_about">About</a></li>
+          <li><a href="/services" data-i18n="nav_services">Services</a></li>
+          <li><a href="/interior.html" data-i18n="nav_interior">Interiors</a></li>
+          <li><a href="/projects" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="/contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_offer">What We Offer</div>
+        <ul class="footer-links">
+          <li><a href="/services" data-i18n="svc_1_title">SS Handrails</a></li>
+          <li><a href="/services" data-i18n="svc_2_title">Tile Corner Protection</a></li>
+          <li><a href="/services" data-i18n="svc_3_title">Wall & Pillar Cladding</a></li>
+          <li><a href="/services" data-i18n="svc_4_title">Glass Canopy</a></li>
+          <li><a href="/services" data-i18n="svc_5_title">Safety Railings</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_contact">Contact</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>New No:21, Khana Bagh Street,<br>Triplicane, Chennai 600005</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+919489486081">+91 94894 86081</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:iamhajihaz@gmail.com">iamhajihaz@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        <div class="footer-copy" data-i18n="footer_copy">© <span data-year>2026</span> RKN Associates. All rights reserved.</div>
+        <div class="footer-gst" data-i18n="footer_gst">GST: 33ABCDE1234F1Z5</div>
+      </div>
+      <button class="footer-back-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24"><polyline points="18,15 12,9 6,15"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer-credit">
+    <span data-i18n="footer_credit_prefix">Crafted with care by</span>
+    <a href="https://allbeesolutions.com" target="_blank" rel="noopener">Allbee Solutions</a>
+  </div>
+</footer>
+
+<!-- WHATSAPP -->
+<a href="https://wa.me/919489486081?text=Hi%2C%20I'm%20interested%20in%20discussing%20a%20project%20with%20RKN%20Associates." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<a href="/contact" class="sticky-cta" data-i18n="sticky_cta">Get Quote in 30 Seconds</a>
+
+<script src="assets/images.js"></script>
+<script src="assets/translations.js"></script>
+<script src="assets/shared.js"></script>
+
+</body>
+</html>

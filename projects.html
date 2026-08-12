@@ -1,0 +1,1430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projects | RKN Associates — 100+ Completed Installations Across Tamil Nadu</title>
+<meta name="description" content="Explore over 100 completed stainless steel projects by RKN Associates — celebrity residences, luxury hotels, hospitals, mosques, showrooms, and commercial landmarks across Tamil Nadu since 2005.">
+<link rel="canonical" href="https://rknassociates.com/projects">
+<meta name="keywords" content="RKN projects, stainless steel Chennai projects, SS handrail portfolio, Tamil Nadu stainless steel projects, Color Diamond Model projects">
+<meta property="og:title" content="Projects — RKN Associates">
+<meta property="og:description" content="100+ completed stainless steel installations. From Actor Vishal's residence to hospital corridors — every project still standing.">
+
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="assets/favicon-192.png">
+<link rel="shortcut icon" href="assets/favicon.ico">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Jost:wght@300;400;500;600;700&family=Noto+Sans+Tamil:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="assets/shared.css">
+
+<style>
+/* ===== PROJECTS PAGE SPECIFIC ===== */
+
+/* ============= LANDMARK STRIP ============= */
+.landmark-section {
+  padding: 120px 8% 80px;
+  background: var(--ivory);
+  position: relative;
+}
+
+.landmark-header {
+  max-width: 780px;
+  margin-bottom: 60px;
+}
+
+.landmark-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-top: 40px;
+}
+
+.landmark-tile {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  border-radius: 2px;
+  cursor: pointer;
+  background: var(--dark);
+}
+
+.landmark-tile:nth-child(1) { aspect-ratio: 4/5; }
+.landmark-tile:nth-child(4) { aspect-ratio: 4/3; grid-column: span 2; }
+.landmark-tile:nth-child(6) { aspect-ratio: 4/3; grid-column: span 2; }
+
+.landmark-tile img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 1s cubic-bezier(0.16, 1, 0.3, 1), filter 0.6s ease;
+  filter: brightness(0.88) contrast(1.05);
+}
+
+.landmark-tile:hover img {
+  transform: scale(1.06);
+  filter: brightness(1) contrast(1.1);
+}
+
+.landmark-tile::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(18, 13, 6, 0.85) 100%);
+  pointer-events: none;
+  z-index: 2;
+}
+
+.lt-info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 24px 24px 22px;
+  z-index: 3;
+  color: var(--ivory);
+}
+
+.lt-cat {
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.lt-title {
+  font-family: var(--ff-serif);
+  font-size: 22px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin-bottom: 4px;
+  letter-spacing: 0.02em;
+}
+
+.lt-sub {
+  font-size: 12px;
+  color: rgba(245, 240, 232, 0.7);
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 900px) {
+  .landmark-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .landmark-tile:nth-child(4),
+  .landmark-tile:nth-child(6) {
+    grid-column: auto;
+    aspect-ratio: 4/5;
+  }
+}
+
+@media (max-width: 560px) {
+  .landmark-section { padding: 70px 6% 50px; }
+  .landmark-grid { grid-template-columns: 1fr; }
+  .landmark-tile { aspect-ratio: 4/5 !important; grid-column: auto !important; }
+  .lt-title { font-size: 18px; }
+}
+
+/* ============= FILTERED GALLERY ============= */
+.gallery-section {
+  padding: 100px 8% 120px;
+  background: var(--ivory);
+  border-top: 1px solid rgba(18, 13, 6, 0.06);
+}
+
+.gallery-header {
+  margin-bottom: 50px;
+  max-width: 780px;
+}
+
+.filter-block {
+  margin-bottom: 40px;
+}
+
+.filter-label {
+  display: block;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 14px;
+  font-weight: 500;
+}
+
+.filter-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.filter-chip {
+  padding: 8px 16px;
+  font-family: var(--ff-sans);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--dark);
+  background: transparent;
+  border: 1px solid rgba(18, 13, 6, 0.2);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.filter-chip:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.filter-chip.active {
+  background: var(--dark);
+  color: var(--ivory);
+  border-color: var(--dark);
+}
+
+.filter-chip.active:hover {
+  background: var(--gold);
+  border-color: var(--gold);
+  color: var(--dark);
+}
+
+.filter-count {
+  display: inline-block;
+  font-size: 9px;
+  opacity: 0.5;
+  margin-left: 4px;
+}
+
+.gallery-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 22px 0;
+  border-top: 1px solid rgba(18, 13, 6, 0.1);
+  border-bottom: 1px solid rgba(18, 13, 6, 0.1);
+  margin-bottom: 40px;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(18, 13, 6, 0.6);
+}
+
+.gallery-meta strong {
+  color: var(--dark);
+  font-weight: 600;
+}
+
+.gallery-reset {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 6px 0;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.3s ease;
+}
+
+.gallery-reset:hover {
+  border-bottom-color: var(--gold);
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.gallery-item {
+  position: relative;
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: rgba(18, 13, 6, 0.05);
+  cursor: pointer;
+  animation: galleryIn 0.5s ease both;
+}
+
+@keyframes galleryIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-item::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 55%, rgba(18, 13, 6, 0.9) 100%);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.gallery-item:hover::after { opacity: 1; }
+
+.gi-info {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 20px;
+  color: var(--ivory);
+  z-index: 2;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: opacity 0.5s ease 0.1s, transform 0.5s ease 0.1s;
+}
+
+.gallery-item:hover .gi-info {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.gi-model {
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.gi-title {
+  font-family: var(--ff-serif);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+}
+
+.gallery-empty {
+  grid-column: 1 / -1;
+  padding: 80px 0;
+  text-align: center;
+  color: rgba(18, 13, 6, 0.5);
+  font-size: 14px;
+  letter-spacing: 0.02em;
+  font-style: italic;
+}
+
+@media (max-width: 900px) {
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+  .gi-title { font-size: 13px; }
+}
+
+@media (max-width: 560px) {
+  .gallery-section { padding: 60px 5% 80px; }
+  .gallery-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .filter-chip { font-size: 10px; padding: 6px 12px; }
+  .gi-info { padding: 14px; }
+  .gi-title { font-size: 12px; }
+}
+
+/* ============= KALAM CALLOUT ============= */
+.kalam-callout {
+  padding: 110px 8%;
+  background: var(--dark);
+  color: var(--ivory);
+  position: relative;
+  overflow: hidden;
+}
+
+.kalam-callout::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 30% 40%, rgba(201, 168, 76, 0.08) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 50% at 80% 60%, rgba(201, 168, 76, 0.05) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.kalam-inner {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+  text-align: center;
+  z-index: 2;
+}
+
+.kalam-quote-mark {
+  font-family: var(--ff-serif);
+  font-size: 120px;
+  line-height: 1;
+  color: var(--gold);
+  opacity: 0.35;
+  font-style: italic;
+  margin-bottom: -20px;
+  letter-spacing: -0.05em;
+}
+
+.kalam-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 400;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+  margin-bottom: 28px;
+  color: var(--ivory);
+}
+
+.kalam-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.kalam-desc {
+  font-size: 16px;
+  line-height: 1.8;
+  color: rgba(245, 240, 232, 0.75);
+  max-width: 720px;
+  margin: 0 auto 36px;
+}
+
+.kalam-meta {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 26px;
+  background: rgba(201, 168, 76, 0.08);
+  border: 1px solid rgba(201, 168, 76, 0.3);
+  border-radius: 2px;
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.kalam-meta::before {
+  content: '★';
+  color: var(--gold);
+  font-size: 14px;
+}
+
+@media (max-width: 700px) {
+  .kalam-callout { padding: 70px 6%; }
+  .kalam-quote-mark { font-size: 80px; }
+}
+
+/* ============= HERITAGE SECTION ============= */
+.heritage-section {
+  padding: 120px 8% 100px;
+  background: linear-gradient(180deg, var(--ivory) 0%, #ebe4d6 100%);
+  position: relative;
+  overflow: hidden;
+}
+
+.heritage-section::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(18, 13, 6, 0.12) 50%, transparent);
+}
+
+.heritage-header {
+  text-align: center;
+  max-width: 760px;
+  margin: 0 auto 70px;
+}
+
+.heritage-label {
+  display: inline-block;
+  font-family: var(--ff-sans);
+  font-size: 10px;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 16px;
+  padding: 6px 18px;
+  border: 1px solid rgba(201, 168, 76, 0.4);
+  border-radius: 999px;
+  background: rgba(201, 168, 76, 0.06);
+}
+
+.heritage-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--dark);
+  margin-bottom: 20px;
+  letter-spacing: -0.01em;
+}
+
+.heritage-title em {
+  color: var(--gold);
+  font-style: italic;
+}
+
+.heritage-desc {
+  font-size: 15px;
+  line-height: 1.8;
+  color: rgba(18, 13, 6, 0.7);
+  font-style: italic;
+}
+
+.heritage-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.polaroid {
+  background: #faf6ec;
+  padding: 16px 16px 54px 16px;
+  box-shadow:
+    0 2px 8px rgba(18, 13, 6, 0.08),
+    0 12px 32px rgba(18, 13, 6, 0.12);
+  position: relative;
+  transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+}
+
+.polaroid:nth-child(1) { transform: rotate(-2.2deg); }
+.polaroid:nth-child(2) { transform: rotate(1.5deg); margin-top: 20px; }
+.polaroid:nth-child(3) { transform: rotate(-1.2deg); margin-top: -10px; }
+.polaroid:nth-child(4) { transform: rotate(2deg); margin-top: 10px; }
+.polaroid:nth-child(5) { transform: rotate(-1.8deg); }
+.polaroid:nth-child(6) { transform: rotate(1.3deg); margin-top: 24px; }
+
+.polaroid:hover {
+  transform: rotate(0deg) translateY(-8px);
+  box-shadow:
+    0 4px 12px rgba(18, 13, 6, 0.1),
+    0 20px 48px rgba(18, 13, 6, 0.18);
+  z-index: 5;
+}
+
+.polaroid-img {
+  width: 100%;
+  aspect-ratio: 4/5;
+  object-fit: cover;
+  background: #1a1a1a;
+  filter: sepia(0.3) contrast(1.05);
+}
+
+.polaroid-caption {
+  position: absolute;
+  left: 16px;
+  right: 16px;
+  bottom: 14px;
+  font-family: 'Kalam', 'Caveat', cursive, var(--ff-serif);
+  font-size: 14px;
+  color: rgba(18, 13, 6, 0.75);
+  text-align: center;
+  font-style: italic;
+  letter-spacing: 0.01em;
+  line-height: 1.3;
+}
+
+.polaroid-year {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  font-family: var(--ff-sans);
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: rgba(201, 168, 76, 0.8);
+  background: rgba(18, 13, 6, 0.7);
+  padding: 3px 8px;
+  letter-spacing: 0.2em;
+  font-weight: 500;
+}
+
+.heritage-note {
+  margin-top: 90px;
+  text-align: center;
+  padding: 30px 24px;
+  border-top: 1px solid rgba(18, 13, 6, 0.15);
+  border-bottom: 1px solid rgba(18, 13, 6, 0.15);
+  max-width: 620px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.heritage-note p {
+  font-family: var(--ff-serif);
+  font-style: italic;
+  font-size: 17px;
+  color: rgba(18, 13, 6, 0.75);
+  line-height: 1.6;
+  letter-spacing: 0.01em;
+}
+
+.heritage-note strong {
+  color: var(--gold);
+  font-weight: 500;
+  font-style: normal;
+}
+
+@media (max-width: 900px) {
+  .heritage-grid { grid-template-columns: repeat(2, 1fr); gap: 30px; }
+}
+
+@media (max-width: 560px) {
+  .heritage-section { padding: 70px 6% 60px; }
+  .heritage-grid { grid-template-columns: 1fr; gap: 40px; max-width: 360px; }
+  .polaroid { transform: rotate(0deg) !important; margin-top: 0 !important; }
+  .polaroid:nth-child(even) { transform: rotate(1deg) !important; }
+  .polaroid:nth-child(odd) { transform: rotate(-1deg) !important; }
+}
+
+/* ============= CTA BAND ============= */
+.projects-cta-band {
+  padding: 90px 8%;
+  background: var(--dark);
+  color: var(--ivory);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.projects-cta-band::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 50% 60% at 50% 50%, rgba(201, 168, 76, 0.1) 0%, transparent 70%);
+}
+
+.pcb-inner {
+  position: relative;
+  z-index: 2;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.pcb-title {
+  font-family: var(--ff-serif);
+  font-size: clamp(30px, 4vw, 42px);
+  font-weight: 400;
+  line-height: 1.25;
+  margin-bottom: 18px;
+  letter-spacing: -0.01em;
+}
+
+.pcb-title em { color: var(--gold); font-style: italic; }
+
+.pcb-desc {
+  font-size: 15px;
+  color: rgba(245, 240, 232, 0.75);
+  margin-bottom: 32px;
+  line-height: 1.7;
+}
+
+.pcb-actions {
+  display: flex;
+  gap: 18px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== PRELOADER ========== -->
+<div class="preloader" id="preloader">
+  <div class="pre-inner">
+    <img class="pre-logo" data-img="logo" alt="RKN Associates">
+    <div class="pre-name">RKN Associates</div>
+    <div class="pre-tag" data-i18n="pre_tag">Stainless Steel · Since 2005</div>
+    <div class="pre-bar-wrap"><div class="pre-bar"></div></div>
+  </div>
+</div>
+
+<!-- ========== NAV ========== -->
+<nav class="rkn-nav">
+  <a href="/home" class="nav-logo">
+    <img class="nav-logo-img" data-img="logo" alt="RKN Associates">
+    <div class="nav-brand">
+      <span class="nav-brand-name">RKN Associates</span>
+      <span class="nav-brand-tag" data-i18n="hero_subtitle">Stainless Steel · Since 2005</span>
+    </div>
+  </a>
+  <div class="nav-links">
+    <a href="/home" data-i18n="nav_home">Home</a>
+    <a href="/about" data-i18n="nav_about">About</a>
+    <a href="/services" data-i18n="nav_services">Services</a>
+    <a href="/interior.html" data-i18n="nav_interior">Interiors</a>
+    <a href="/projects" class="active" data-i18n="nav_projects">Projects</a>
+    <a href="/contact" data-i18n="nav_contact">Contact</a>
+  </div>
+  <div class="nav-right">
+    <a href="tel:+919489486081" class="nav-phone">
+      <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.8"/></svg>
+      +91 94894 86081
+    </a>
+    <div class="lang-toggle">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="ta">தமி</button>
+    </div>
+    <a href="/contact" class="nav-cta" data-i18n="nav_cta">Get a Quote</a>
+    <div class="nav-hamburger" id="hamb">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== MOBILE MENU ========== -->
+<div class="mobile-menu" id="mobile-menu">
+  <div class="mobile-close">✕</div>
+  <a href="/home" data-i18n="nav_home">Home</a>
+  <a href="/about" data-i18n="nav_about">About</a>
+  <a href="/services" data-i18n="nav_services">Services</a>
+  <a href="/interior.html" data-i18n="nav_interior">Interiors</a>
+  <a href="/projects" data-i18n="nav_projects">Projects</a>
+  <a href="/contact" data-i18n="nav_contact">Contact</a>
+  <div class="mobile-menu-extras">
+    <div class="lang-toggle">
+      <button data-lang="en" class="active">EN</button>
+      <button data-lang="ta">தமிழ்</button>
+    </div>
+  </div>
+</div>
+
+<!-- ========== PAGE HERO — v5 · 3D Wall of Work ========== -->
+<section class="projects-hero-new" id="projectsHeroV5">
+  <!-- Three.js canvas target (desktop) or CSS 3D fallback container (mobile) -->
+  <div class="phn-canvas" id="phnCanvas"></div>
+
+  <!-- Content overlay -->
+  <div class="phn-vignette"></div>
+
+  <!-- Loading state shown until textures are ready -->
+  <div class="phn-loading" id="phnLoading">
+    <span data-i18n="projects_hero_loading">Loading portfolio…</span>
+    <div class="phn-loading-bar"></div>
+  </div>
+
+  <div class="phn-inner">
+    <div class="phn-breadcrumb" data-i18n="projects_breadcrumb">Home · Projects</div>
+    <h1 class="phn-title">
+      <span data-i18n="projects_hero_title_new_1">100+ Projects.</span><br>
+      <em data-i18n="projects_hero_title_new_2">Each One Still Standing.</em>
+    </h1>
+    <p class="phn-sub" data-i18n="projects_hero_sub_new">Two decades of work. Every installation documented below.</p>
+    <div class="phn-scroll-hint">
+      <span data-i18n="projects_hero_scroll_hint">Scroll to browse the full portfolio</span>
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+    </div>
+  </div>
+</section>
+
+<!-- ========== LANDMARK PROJECTS ========== -->
+<section class="landmark-section">
+  <div class="landmark-header reveal">
+    <div class="section-label" data-i18n="landmark_label">Landmark Projects</div>
+    <h2 class="section-title" data-i18n="landmark_title">The Installations That <em>Define Us.</em></h2>
+    <p class="section-sub" data-i18n="landmark_desc">From celebrity residences to landmark commercial spaces — a selection of projects that showcase RKN's range, execution, and design language.</p>
+  </div>
+
+  <div class="landmark-grid">
+    <!-- Actor Vishal -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="BFA4176A-0C54-4D" alt="Actor Vishal Residence">
+      <div class="lt-info">
+        <div class="lt-cat">Celebrity Residence · 2007</div>
+        <div class="lt-title">Actor Vishal House</div>
+        <div class="lt-sub">Anna Nagar, Chennai</div>
+      </div>
+    </div>
+
+    <!-- Apple Residency -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="35642F94-87F2-4B" alt="Apple Residency Hotel">
+      <div class="lt-info">
+        <div class="lt-cat">Hospitality · Facade</div>
+        <div class="lt-title">Apple Residency Hotel</div>
+        <div class="lt-sub">Glass &amp; Steel Facade</div>
+      </div>
+    </div>
+
+    <!-- Samsonite Showroom -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="6170F646-BE2C-45" alt="Samsonite Showroom">
+      <div class="lt-info">
+        <div class="lt-cat">Showroom · Egmore</div>
+        <div class="lt-title">Samsonite Showroom</div>
+        <div class="lt-sub">Full Exterior Cladding</div>
+      </div>
+    </div>
+
+    <!-- LG Showroom (wider tile) -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="491DE4F7-1C89-4F" alt="LG Showroom">
+      <div class="lt-info">
+        <div class="lt-cat">Commercial · Cable Railing</div>
+        <div class="lt-title">LG Showroom Terrace</div>
+        <div class="lt-sub">Premium 7-Line Satin Cable System</div>
+      </div>
+    </div>
+
+    <!-- Kader Mahal Nagore -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="A289EF0B-8F9B-40" alt="Kader Mahal Nagore Mosque">
+      <div class="lt-info">
+        <div class="lt-cat">Religious · Mosque</div>
+        <div class="lt-title">Kader Mahal Nagore</div>
+        <div class="lt-sub">Entrance &amp; Staircase Handrails</div>
+      </div>
+    </div>
+
+    <!-- Color Diamond macro (wider tile) -->
+    <div class="landmark-tile reveal rkn-tilt">
+      <img data-img="20B57222-2208-45" alt="Color Diamond Model">
+      <div class="lt-info">
+        <div class="lt-cat">Signature Model · First in Tamil Nadu</div>
+        <div class="lt-title">Color Diamond Model</div>
+        <div class="lt-sub">Original Design Innovation by RKN · Since 2010</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FILTERED GALLERY ========== -->
+<section class="gallery-section">
+  <div class="gallery-header reveal">
+    <div class="section-label" data-i18n="filter_section_label">Full Portfolio</div>
+    <h2 class="section-title"><span data-i18n="filter_section_title_1">Browse</span> <em data-i18n="filter_section_title_2">54 Installations.</em></h2>
+    <p class="section-sub" data-i18n="filter_section_desc">Filter by design model or sector. Every project documented with original site photography.</p>
+  </div>
+
+  <!-- Filter: Model -->
+  <div class="filter-block">
+    <span class="filter-label" data-i18n="filter_model">Filter by Design Model</span>
+    <div class="filter-chips" id="filter-chips-model">
+      <button class="filter-chip active" data-filter-model="all" data-i18n="filter_all_models">All Models</button>
+      <!-- Chips injected by JS -->
+    </div>
+  </div>
+
+  <!-- Filter: Sector -->
+  <div class="filter-block">
+    <span class="filter-label" data-i18n="filter_sector">Filter by Sector</span>
+    <div class="filter-chips" id="filter-chips-sector">
+      <button class="filter-chip active" data-filter-sector="all" data-i18n="filter_all_sectors">All Sectors</button>
+      <!-- Chips injected by JS -->
+    </div>
+  </div>
+
+  <!-- Meta/count bar -->
+  <div class="gallery-meta">
+    <div>
+      <strong id="gallery-count">54</strong> <span data-i18n="filter_showing">Projects Showing</span>
+    </div>
+    <button class="gallery-reset" id="gallery-reset" data-i18n="filter_reset">Reset Filters</button>
+  </div>
+
+  <!-- Gallery grid -->
+  <div class="gallery-grid" id="gallery-grid">
+    <!-- Items injected by JS -->
+  </div>
+</section>
+
+<!-- ========== KALAM PRESTIGE CALLOUT ========== -->
+<section class="kalam-callout rkn-spotlight">
+  <div class="kalam-inner">
+    <div class="kalam-quote-mark">"</div>
+    <h2 class="kalam-title" data-i18n-html="true" data-i18n="kalam_title_pr">Entrusted by the Family of <em>Dr. A.P.J. Abdul Kalam.</em></h2>
+    <p class="kalam-desc" data-i18n="kalam_desc_pr">In April 2013, RKN Associates was selected to deliver stainless steel installation at the family residence of India's former President and missile man, Dr. A.P.J. Abdul Kalam, in Pamban, Rameswaram. A recognition we hold as one of the greatest honours in our 20+ year journey.</p>
+    <div class="kalam-meta" data-i18n="kalam_meta_pr">Pamban, Rameswaram · April 2013</div>
+  </div>
+</section>
+
+<!-- ========== HERITAGE SECTION ========== -->
+<section class="heritage-section">
+  <div class="heritage-header reveal">
+    <span class="heritage-label" data-i18n="heritage_label">Early Works · 2006—2008</span>
+    <h2 class="heritage-title" data-i18n-html="true" data-i18n="heritage_title_full">Where It <em>All Began.</em></h2>
+    <p class="heritage-desc" data-i18n="heritage_desc">Before the Color Diamond Model and 20 years of refinement, RKN was a small workshop in Triplicane. These projects — from our earliest years — built the foundation for everything that followed.</p>
+  </div>
+
+  <div class="heritage-grid">
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="B4D3C06B-5FD0-4F" data-variant="bw" alt="Early wood-steel staircase">
+      <div class="polaroid-year">2007</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_1">Wood-Steel Interior Staircase — one of our earliest residential commissions.</div>
+    </div>
+
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="4197F189-C10B-4F" data-variant="bw" alt="Wood post 4-line landing">
+      <div class="polaroid-year">2007</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_2">Wood Post 4-Line Landing — early multi-run balustrade.</div>
+    </div>
+
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="FD0BACC8-ACAB-4E" data-variant="bw" alt="Heritage building facade">
+      <div class="polaroid-year">2006</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_3">Heritage Building — classical balcony restoration.</div>
+    </div>
+
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="EA659E21-2210-44" data-variant="bw" alt="Early ornamental handrail">
+      <div class="polaroid-year">2008</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_4">Ornamental Ring Baluster — hand-formed early design.</div>
+    </div>
+
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="14D2968D-BC2B-4D" data-variant="bw" alt="Ball model with crystal">
+      <div class="polaroid-year">2008</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_5">Ball Model with Crystal — precursor to Color Diamond.</div>
+    </div>
+
+    <div class="polaroid reveal">
+      <img class="polaroid-img" data-img="31A709B8-6F2F-46" data-variant="bw" alt="Peach interior gallery cable railing">
+      <div class="polaroid-year">2008</div>
+      <div class="polaroid-caption" data-i18n="heritage_cap_6">Peach Interior Gallery — cable &amp; glass plate railing.</div>
+    </div>
+  </div>
+
+  <div class="heritage-note reveal">
+    <p data-i18n-html="true" data-i18n="heritage_note">From a workshop in Triplicane in 2005 — to <strong>100+ projects</strong>, <strong>4 government awards</strong>, and the honour of serving <strong>Dr. Kalam's family</strong> — every step built on this foundation.</p>
+  </div>
+</section>
+
+<!-- ========== FINAL CTA ========== -->
+<section class="projects-cta-band rkn-spotlight">
+  <div class="pcb-inner">
+    <h2 class="pcb-title" data-i18n-html="true" data-i18n="pcb_title">Your Project Could Be <em>Next On This Wall.</em></h2>
+    <p class="pcb-desc" data-i18n="pcb_desc">From initial site visit to final installation — we handle every step. 20+ years of experience, government-recognised quality, delivered on schedule.</p>
+    <div class="pcb-actions">
+      <a href="/contact" class="btn-gold" data-i18n="pcb_cta_1">Request a Site Visit</a>
+      <a href="/services" class="btn-outline-ivory" data-i18n="pcb_cta_2">View Our Services</a>
+    </div>
+  </div>
+</section>
+
+<!-- ========== FOOTER ========== -->
+<footer class="site-footer">
+  <div class="footer-marquee-wrap">
+    <div class="footer-marquee">
+      <div class="footer-marquee-inner">
+        <span class="fm-item" data-i18n="mq_1">Color Diamond Model</span>
+        <span class="fm-item" data-i18n="mq_2">Stainless Steel Handrails</span>
+        <span class="fm-item" data-i18n="mq_3">Glass Canopy</span>
+        <span class="fm-item" data-i18n="mq_4">Wall Cladding</span>
+        <span class="fm-item" data-i18n="mq_5">Corner Protection</span>
+        <span class="fm-item" data-i18n="mq_6">Pergola</span>
+        <span class="fm-item" data-i18n="mq_7">Safety Railing</span>
+        <span class="fm-item" data-i18n="mq_8">Spiral Staircase</span>
+      </div>
+      <div class="footer-marquee-inner" aria-hidden="true">
+        <span class="fm-item" data-i18n="mq_1">Color Diamond Model</span>
+        <span class="fm-item" data-i18n="mq_2">Stainless Steel Handrails</span>
+        <span class="fm-item" data-i18n="mq_3">Glass Canopy</span>
+        <span class="fm-item" data-i18n="mq_4">Wall Cladding</span>
+        <span class="fm-item" data-i18n="mq_5">Corner Protection</span>
+        <span class="fm-item" data-i18n="mq_6">Pergola</span>
+        <span class="fm-item" data-i18n="mq_7">Safety Railing</span>
+        <span class="fm-item" data-i18n="mq_8">Spiral Staircase</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer-main">
+    <div class="footer-bg-text">RKN</div>
+    <div class="footer-top">
+      <div class="footer-col">
+        <div class="footer-logo">
+          <img class="footer-logo-img" data-img="logo" alt="RKN Associates">
+          <div>
+            <div class="footer-brand-name">RKN Associates</div>
+            <div class="footer-brand-tag" data-i18n="pre_tag">Stainless Steel · Since 2005</div>
+          </div>
+        </div>
+        <p class="footer-desc" data-i18n="footer_desc">Premium stainless steel craftsmanship from Chennai, serving Tamil Nadu since 2005. Government-recognised, architect-trusted, built to last.</p>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_explore">Explore</div>
+        <ul class="footer-links">
+          <li><a href="/home" data-i18n="nav_home">Home</a></li>
+          <li><a href="/about" data-i18n="nav_about">About</a></li>
+          <li><a href="/services" data-i18n="nav_services">Services</a></li>
+          <li><a href="/interior.html" data-i18n="nav_interior">Interiors</a></li>
+          <li><a href="/projects" data-i18n="nav_projects">Projects</a></li>
+          <li><a href="/contact" data-i18n="nav_contact">Contact</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_offer">What We Offer</div>
+        <ul class="footer-links">
+          <li><a href="/services" data-i18n="svc_1_title">SS Handrails</a></li>
+          <li><a href="/services" data-i18n="svc_2_title">Tile Corner Protection</a></li>
+          <li><a href="/services" data-i18n="svc_3_title">Wall &amp; Pillar Cladding</a></li>
+          <li><a href="/services" data-i18n="svc_4_title">Glass Canopy</a></li>
+          <li><a href="/services" data-i18n="svc_5_title">Safety Railings</a></li>
+        </ul>
+      </div>
+
+      <div class="footer-col">
+        <div class="footer-col-title" data-i18n="footer_col_contact">Contact</div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+          <span>New No:21, Khana Bagh Street,<br>Triplicane, Chennai 600005</span>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <a href="tel:+919489486081">+91 94894 86081</a>
+        </div>
+        <div class="footer-contact-item">
+          <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+          <a href="mailto:iamhajihaz@gmail.com">iamhajihaz@gmail.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>
+        <div class="footer-copy" data-i18n="footer_copy">© <span data-year>2026</span> RKN Associates. All rights reserved.</div>
+        <div class="footer-gst" data-i18n="footer_gst">GST: 33ABCDE1234F1Z5</div>
+      </div>
+      <button class="footer-back-top" aria-label="Back to top">
+        <svg viewBox="0 0 24 24"><polyline points="18,15 12,9 6,15"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="footer-credit">
+    <span data-i18n="footer_credit_prefix">Crafted with care by</span>
+    <a href="https://allbeesolutions.com" target="_blank" rel="noopener">Allbee Solutions</a>
+  </div>
+</footer>
+
+<!-- ========== WHATSAPP FLOAT ========== -->
+<a href="https://wa.me/919489486081?text=Hi%2C%20I'm%20interested%20in%20discussing%20a%20project%20with%20RKN%20Associates." class="wa-float" target="_blank" rel="noopener" aria-label="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51l-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+<!-- ========== STICKY CTA ========== -->
+<a href="/contact" class="sticky-cta" data-i18n="sticky_cta">Get Quote in 30 Seconds</a>
+
+<!-- ========== SCRIPTS ========== -->
+<script src="assets/images.js"></script>
+<script src="assets/translations.js"></script>
+<script src="assets/shared.js"></script>
+
+<script>
+// ============= PROJECTS GALLERY ============= //
+(function() {
+  // IDs of projects already shown in landmark strip — exclude from main gallery
+  const LANDMARK_IDS = [
+    'BFA4176A-0C54-4D', '35642F94-87F2-4B', '6170F646-BE2C-45',
+    '491DE4F7-1C89-4F', 'A289EF0B-8F9B-40', '20B57222-2208-45'
+  ];
+
+  // Get all non-heritage, non-landmark images from RKN_META
+  const allMeta = window.RKN_META || {};
+  const galleryImages = Object.keys(allMeta)
+    .filter(k => !allMeta[k].heritage)
+    .map(k => ({ id: k, ...allMeta[k] }));
+
+  // Extract unique model groups and sector groups (with counts)
+  const modelCounts = {};
+  const sectorCounts = {};
+  galleryImages.forEach(img => {
+    modelCounts[img.model_group] = (modelCounts[img.model_group] || 0) + 1;
+    sectorCounts[img.sector_group] = (sectorCounts[img.sector_group] || 0) + 1;
+  });
+
+  // Sort by count desc
+  const sortedModels = Object.keys(modelCounts).sort((a, b) => modelCounts[b] - modelCounts[a]);
+  const sortedSectors = Object.keys(sectorCounts).sort((a, b) => sectorCounts[b] - sectorCounts[a]);
+
+  // Build chips
+  const modelChipsWrap = document.getElementById('filter-chips-model');
+  const sectorChipsWrap = document.getElementById('filter-chips-sector');
+
+  sortedModels.forEach(m => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.setAttribute('data-filter-model', m);
+    btn.innerHTML = `${m}<span class="filter-count">${modelCounts[m]}</span>`;
+    modelChipsWrap.appendChild(btn);
+  });
+
+  sortedSectors.forEach(s => {
+    const btn = document.createElement('button');
+    btn.className = 'filter-chip';
+    btn.setAttribute('data-filter-sector', s);
+    btn.innerHTML = `${s}<span class="filter-count">${sectorCounts[s]}</span>`;
+    sectorChipsWrap.appendChild(btn);
+  });
+
+  // State
+  let activeModel = 'all';
+  let activeSector = 'all';
+
+  const grid = document.getElementById('gallery-grid');
+  const countEl = document.getElementById('gallery-count');
+
+  function renderGrid() {
+    let filtered = galleryImages.filter(img => {
+      const modelOk = activeModel === 'all' || img.model_group === activeModel;
+      const sectorOk = activeSector === 'all' || img.sector_group === activeSector;
+      return modelOk && sectorOk;
+    });
+
+    countEl.textContent = filtered.length;
+
+    if (filtered.length === 0) {
+      grid.innerHTML = '<div class="gallery-empty">No projects match this combination. Try resetting filters.</div>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map((img, i) => `
+      <div class="gallery-item" style="animation-delay: ${Math.min(i * 0.03, 0.6)}s">
+        <img data-img="${img.id}" data-variant="web" alt="${img.title}">
+        <div class="gi-info">
+          <div class="gi-model">${img.model_group}</div>
+          <div class="gi-title">${img.title}</div>
+        </div>
+      </div>
+    `).join('');
+
+    // Load images
+    grid.querySelectorAll('[data-img]').forEach(el => {
+      const key = el.getAttribute('data-img');
+      if (window.RKN_IMG && window.RKN_IMG[key]) {
+        el.src = window.RKN_IMG[key].web;
+      }
+    });
+  }
+
+  // Chip click handlers
+  modelChipsWrap.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-chip');
+    if (!btn) return;
+    activeModel = btn.getAttribute('data-filter-model');
+    modelChipsWrap.querySelectorAll('.filter-chip').forEach(b => b.classList.toggle('active', b === btn));
+    renderGrid();
+  });
+
+  sectorChipsWrap.addEventListener('click', e => {
+    const btn = e.target.closest('.filter-chip');
+    if (!btn) return;
+    activeSector = btn.getAttribute('data-filter-sector');
+    sectorChipsWrap.querySelectorAll('.filter-chip').forEach(b => b.classList.toggle('active', b === btn));
+    renderGrid();
+  });
+
+  // Reset
+  document.getElementById('gallery-reset').addEventListener('click', () => {
+    activeModel = 'all';
+    activeSector = 'all';
+    modelChipsWrap.querySelectorAll('.filter-chip').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter-model') === 'all'));
+    sectorChipsWrap.querySelectorAll('.filter-chip').forEach(b => b.classList.toggle('active', b.getAttribute('data-filter-sector') === 'all'));
+    renderGrid();
+  });
+
+  // Initial render — wait for images library to load
+  function init() {
+    if (window.RKN_META) {
+      renderGrid();
+    } else {
+      setTimeout(init, 100);
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', init);
+  if (document.readyState !== 'loading') init();
+})();
+</script>
+
+<!-- ============= 3D WALL OF WORK — Three.js (desktop) + CSS fallback (mobile) ============= -->
+<script>
+(function() {
+  const heroSection = document.getElementById('projectsHeroV5');
+  const canvasHolder = document.getElementById('phnCanvas');
+  const loading = document.getElementById('phnLoading');
+  if (!heroSection || !canvasHolder) return;
+
+  // Detect device capability
+  const isMobile = window.matchMedia('(max-width: 900px), (pointer: coarse)').matches;
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function getProjectImages() {
+    // Build list of all available project images from RKN_IMG library
+    if (!window.RKN_IMG) return [];
+    const keys = Object.keys(window.RKN_IMG);
+    return keys.map(k => window.RKN_IMG[k].web || window.RKN_IMG[k].thumb).filter(Boolean);
+  }
+
+  // ============= MOBILE / LOW-POWER FALLBACK =============
+  function renderCSSFallback() {
+    const imgs = getProjectImages().slice(0, 12);
+    const grid = document.createElement('div');
+    grid.style.cssText = `
+      position: absolute; inset: 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-auto-rows: 1fr;
+      gap: 8px;
+      padding: 20% 8% 24%;
+      opacity: 0.45;
+      transition: opacity 2s ease;
+    `;
+    imgs.forEach((src, i) => {
+      const tile = document.createElement('div');
+      tile.style.cssText = `
+        background: url('${src}') center/cover;
+        transform: translateZ(0);
+        animation: mobileTileFloat 8s ease-in-out infinite alternate;
+        animation-delay: ${i * 0.2}s;
+        opacity: ${0.5 + Math.random() * 0.4};
+      `;
+      grid.appendChild(tile);
+    });
+    canvasHolder.appendChild(grid);
+
+    const style = document.createElement('style');
+    style.textContent = `@keyframes mobileTileFloat { from { transform: translateY(0) scale(1); } to { transform: translateY(-8px) scale(1.02); } }`;
+    document.head.appendChild(style);
+
+    setTimeout(() => {
+      if (loading) loading.classList.add('hidden');
+    }, 800);
+  }
+
+  // ============= DESKTOP: Three.js 3D image cloud =============
+  function renderThreeJS() {
+    // Load Three.js from CDN
+    const s = document.createElement('script');
+    s.src = 'https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js';
+    s.onload = initThree;
+    s.onerror = () => {
+      console.warn('Three.js failed to load, falling back to CSS');
+      renderCSSFallback();
+    };
+    document.head.appendChild(s);
+  }
+
+  function initThree() {
+    const THREE = window.THREE;
+    if (!THREE) { renderCSSFallback(); return; }
+
+    const width = heroSection.clientWidth;
+    const height = heroSection.clientHeight;
+
+    // Scene + camera
+    const scene = new THREE.Scene();
+    scene.fog = new THREE.Fog(0x0a0702, 8, 28);
+
+    const camera = new THREE.PerspectiveCamera(55, width / height, 0.1, 100);
+    camera.position.set(0, 0, 14);
+
+    // Renderer
+    const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+    renderer.setSize(width, height);
+    renderer.setClearColor(0x0a0702, 1);
+    canvasHolder.appendChild(renderer.domElement);
+
+    // Build image plane meshes
+    const imgs = getProjectImages();
+    const planes = [];
+    const loader = new THREE.TextureLoader();
+    loader.crossOrigin = 'anonymous';
+
+    // Use deterministic positions based on index so no two runs look different
+    function goldenRatioPosition(i, total) {
+      // Fibonacci sphere-ish distribution but biased forward-facing
+      const phi = Math.acos(1 - 2 * (i + 0.5) / total);
+      const theta = Math.PI * (1 + Math.sqrt(5)) * (i + 0.5);
+      const radius = 7 + Math.sin(i * 1.3) * 1.5;
+      // Narrow the distribution to face camera
+      const x = radius * Math.sin(phi) * Math.cos(theta) * 0.85;
+      const y = radius * Math.sin(phi) * Math.sin(theta) * 0.5;
+      const z = Math.abs(radius * Math.cos(phi)) * -0.6 - 2;
+      return { x, y, z };
+    }
+
+    let loadedCount = 0;
+    const totalImgs = imgs.length;
+
+    imgs.forEach((src, i) => {
+      loader.load(src, (tex) => {
+        tex.minFilter = THREE.LinearFilter;
+        tex.magFilter = THREE.LinearFilter;
+        const ratio = tex.image ? tex.image.width / tex.image.height : 0.8;
+        const baseW = 2.0;
+        const w = baseW;
+        const h = baseW / ratio;
+
+        const mat = new THREE.MeshBasicMaterial({
+          map: tex,
+          transparent: true,
+          opacity: 0
+        });
+        const geom = new THREE.PlaneGeometry(w, h);
+        const mesh = new THREE.Mesh(geom, mat);
+
+        const pos = goldenRatioPosition(i, totalImgs);
+        mesh.position.set(pos.x, pos.y, pos.z);
+
+        // Random slight rotation for organic feel
+        mesh.rotation.z = (Math.random() - 0.5) * 0.25;
+        mesh.userData.baseRot = mesh.rotation.z;
+        mesh.userData.basePos = { x: pos.x, y: pos.y, z: pos.z };
+        mesh.userData.phase = Math.random() * Math.PI * 2;
+
+        scene.add(mesh);
+        planes.push(mesh);
+
+        // Fade in
+        const fadeStart = performance.now();
+        (function fadeIn() {
+          const elapsed = performance.now() - fadeStart;
+          const t = Math.min(elapsed / 1400, 1);
+          mat.opacity = t * 0.88;
+          if (t < 1) requestAnimationFrame(fadeIn);
+        })();
+
+        loadedCount++;
+        if (loadedCount >= Math.min(totalImgs, 12) && loading && !loading.classList.contains('hidden')) {
+          // Hide loading as soon as first batch is visible
+          loading.classList.add('hidden');
+        }
+      }, undefined, () => {
+        loadedCount++;
+      });
+    });
+
+    // Mouse parallax
+    const targetRot = { x: 0, y: 0 };
+    const currentRot = { x: 0, y: 0 };
+
+    heroSection.addEventListener('mousemove', (e) => {
+      const rect = heroSection.getBoundingClientRect();
+      const nx = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+      const ny = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+      targetRot.y = nx * 0.12;   // subtle
+      targetRot.x = -ny * 0.08;
+    });
+
+    // Scroll-driven zoom
+    let scrollProgress = 0;
+    function onScroll() {
+      const rect = heroSection.getBoundingClientRect();
+      const h = heroSection.clientHeight;
+      // progress = 0 at top, 1 when hero scrolled past
+      scrollProgress = Math.max(0, Math.min(1, -rect.top / h));
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+
+    // Render loop
+    let rafId = null;
+    const clock = new THREE.Clock();
+
+    function animate() {
+      rafId = requestAnimationFrame(animate);
+      const elapsed = clock.getElapsedTime();
+
+      // Smooth parallax interpolation
+      currentRot.x += (targetRot.x - currentRot.x) * 0.05;
+      currentRot.y += (targetRot.y - currentRot.y) * 0.05;
+
+      // Continuous ambient drift
+      scene.rotation.y = currentRot.y + elapsed * 0.04;
+      scene.rotation.x = currentRot.x;
+
+      // Scroll zoom — push camera forward as user scrolls
+      camera.position.z = 14 - scrollProgress * 12;
+      camera.position.y = scrollProgress * 1.5;
+
+      // Subtle per-plane bob
+      planes.forEach((p) => {
+        p.position.y = p.userData.basePos.y + Math.sin(elapsed * 0.6 + p.userData.phase) * 0.06;
+      });
+
+      renderer.render(scene, camera);
+    }
+    animate();
+
+    // Resize handling
+    window.addEventListener('resize', () => {
+      const w = heroSection.clientWidth;
+      const h = heroSection.clientHeight;
+      camera.aspect = w / h;
+      camera.updateProjectionMatrix();
+      renderer.setSize(w, h);
+    });
+
+    // Pause when scrolled out of view to save resources
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (!entry.isIntersecting && rafId) {
+          cancelAnimationFrame(rafId);
+          rafId = null;
+        } else if (entry.isIntersecting && !rafId) {
+          animate();
+        }
+      });
+    }, { threshold: 0 });
+    io.observe(heroSection);
+
+    // Failsafe: hide loading after 6s even if images didn't finish
+    setTimeout(() => {
+      if (loading && !loading.classList.contains('hidden')) {
+        loading.classList.add('hidden');
+      }
+    }, 6000);
+  }
+
+  // Branch: use Three.js on desktop, CSS fallback on mobile or reduced motion
+  function boot() {
+    if (!window.RKN_IMG) {
+      setTimeout(boot, 150);
+      return;
+    }
+    if (isMobile || reduceMotion) {
+      renderCSSFallback();
+    } else {
+      // Try WebGL availability
+      const canvas = document.createElement('canvas');
+      const gl = canvas.getContext('webgl') || canvas.getContext('experimental-webgl');
+      if (!gl) {
+        renderCSSFallback();
+      } else {
+        renderThreeJS();
+      }
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', boot);
+  } else {
+    boot();
+  }
+})();
+</script>
+
+</body>
+</html>

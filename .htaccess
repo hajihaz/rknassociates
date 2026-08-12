@@ -1,0 +1,67 @@
+# ==========================================================
+# RKN Associates — Production .htaccess
+# Force HTTPS, non-www → www (or vice versa), caching, gzip, 404
+# ==========================================================
+
+# ---------- 1. Force HTTPS ----------
+RewriteEngine On
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ---------- 2. Force non-www (rknassociates.com, not www.) ----------
+# If you prefer www., comment this block and uncomment the one below it.
+RewriteCond %{HTTP_HOST} ^www\.rknassociates\.com [NC]
+RewriteRule ^(.*)$ https://rknassociates.com/$1 [L,R=301]
+
+# ---- Alternative: Force www ----
+# RewriteCond %{HTTP_HOST} ^rknassociates\.com [NC]
+# RewriteRule ^(.*)$ https://www.rknassociates.com/$1 [L,R=301]
+
+# ---------- 3. Default document ----------
+DirectoryIndex index.html
+
+# ---------- 4. Custom 404 ----------
+ErrorDocument 404 /404.html
+
+# ---------- 5. Clean URLs (optional — allow /about instead of /about.html) ----------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.html -f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# ---------- 6. GZIP compression ----------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/rss+xml image/svg+xml
+</IfModule>
+
+# ---------- 7. Browser caching ----------
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault                              "access plus 1 month"
+  ExpiresByType text/html                     "access plus 0 seconds"
+  ExpiresByType text/css                      "access plus 1 year"
+  ExpiresByType application/javascript        "access plus 1 year"
+  ExpiresByType application/x-javascript      "access plus 1 year"
+  ExpiresByType image/jpeg                    "access plus 1 year"
+  ExpiresByType image/png                     "access plus 1 year"
+  ExpiresByType image/webp                    "access plus 1 year"
+  ExpiresByType image/svg+xml                 "access plus 1 year"
+  ExpiresByType image/x-icon                  "access plus 1 year"
+  ExpiresByType font/woff                     "access plus 1 year"
+  ExpiresByType font/woff2                    "access plus 1 year"
+  ExpiresByType application/pdf               "access plus 1 month"
+</IfModule>
+
+# ---------- 8. Security headers ----------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "geolocation=(), microphone=(), camera=()"
+</IfModule>
+
+# ---------- 9. Protect sensitive files ----------
+<FilesMatch "^\.(htaccess|htpasswd|env|git|DS_Store)">
+  Require all denied
+</FilesMatch>

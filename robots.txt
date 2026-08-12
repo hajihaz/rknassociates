@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+Disallow: /assets/images.js
+
+Sitemap: https://rknassociates.com/sitemap.xml

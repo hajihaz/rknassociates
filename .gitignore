@@ -1,0 +1,5 @@
+# Archive bundles and temporary artifacts (kept on disk, not tracked)
+*.zip
+zi*
+zik*
+.DS_Store
