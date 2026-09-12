@@ -132,7 +132,7 @@ window.RKN_I18N = {
     form_submit: 'Send Request',
     form_response: 'We respond within 24 hours.',
     form_success: 'Thank you. We will be in touch within 24 hours.',
-    form_error: 'Something went wrong. Please call us directly: +91 9489486081.',
+    form_error: 'Something went wrong. Please email iamhajihaz@gmail.com for assistance.',
 
     // Sticky CTA
     sticky_cta: 'Get Quote in 30 Seconds',
@@ -344,7 +344,9 @@ window.RKN_I18N = {
     contact_hero_title_2: 'Something That Stands.',
     contact_hero_sub: 'A site visit, a quote, a conversation — we\'re one call away.',
     contact_form_title: 'Send a Quote Request',
-    contact_direct_title: 'Direct Lines',
+    contact_direct_title: 'Project Availability',
+    contact_availability_label: 'CURRENTLY ENGAGED',
+    contact_availability_text: 'We are currently working on major projects and are unable to take on new projects at this time.',
     contact_visit_title: 'Visit Our Workshop',
     contact_directions: 'Get Directions',
     contact_hours_label: 'Working Hours',
@@ -397,7 +399,7 @@ window.RKN_I18N = {
     // Contact page
     contact_intro_1: 'Talk to',
     contact_intro_2: 'Us Directly.',
-    contact_intro_desc: 'Pick up the phone, drop us a message, or send the form — whatever works for you. We reply within 24 hours on working days.',
+    contact_intro_desc: 'RKN Associates is currently engaged with major projects and is unable to take on new projects at this time. For serious enquiries, please email us at iamhajihaz@gmail.com for an immediate response.',
     contact_phone_primary_label: 'Primary · Direct',
     contact_phone_secondary_label: 'Office Landline',
     contact_phone_tertiary_label: 'Secondary Mobile',
@@ -443,9 +445,9 @@ window.RKN_I18N = {
     projects_hero_loading: 'Loading portfolio…',
 
     // Contact page hero — "The Signal"
-    contact_hero_new_1: 'One Call.',
-    contact_hero_new_2: 'One Site Visit.',
-    contact_hero_new_3: 'One Standard.',
+    contact_hero_new_1: 'Currently Engaged.',
+    contact_hero_new_2: 'Focused on Major Projects.',
+    contact_hero_new_3: 'Not Taking New Projects.',
     contact_hero_stat_1: 'Workshop in Triplicane',
     contact_hero_stat_2: 'Responses within 24 hours',
     contact_hero_stat_3: 'Projects across 9+ cities',
@@ -598,7 +600,7 @@ window.RKN_I18N = {
     form_submit: 'கோரிக்கை அனுப்பு',
     form_response: '24 மணி நேரத்திற்குள் பதிலளிக்கிறோம்.',
     form_success: 'நன்றி. 24 மணி நேரத்திற்குள் தொடர்பு கொள்கிறோம்.',
-    form_error: 'ஏதோ தவறு ஏற்பட்டுள்ளது. நேரடியாக அழைக்கவும்: +91 9489486081.',
+    form_error: 'ஏதோ தவறு ஏற்பட்டுள்ளது. உதவிக்கு iamhajihaz@gmail.com என்ற மின்னஞ்சலில் தொடர்பு கொள்ளுங்கள்.',
 
     // Sticky CTA
     sticky_cta: '30 வினாடிகளில் விலை',
@@ -802,9 +804,11 @@ window.RKN_I18N = {
     contact_breadcrumb: 'முகப்பு · தொடர்பு',
     contact_hero_title_1: 'நாம் கட்டுவோம்',
     contact_hero_title_2: 'நிலைக்கும் ஒன்றை.',
-    contact_hero_sub: 'ஒரு தள வருகை, ஒரு விலை, ஒரு உரையாடல் — நாங்கள் ஒரு அழைப்புக்கு அப்பால்.',
+    contact_hero_sub: 'RKN Associates தற்போது முக்கிய திட்டங்களில் ஈடுபட்டுள்ளது; புதிய திட்டங்களை ஏற்க இயலவில்லை. தீவிரமான விசாரணைகளுக்கு மின்னஞ்சலில் தொடர்பு கொள்ளுங்கள்.',
     contact_form_title: 'விலை கோரிக்கையை அனுப்புக',
-    contact_direct_title: 'நேரடி வரிகள்',
+    contact_direct_title: 'திட்ட நிலவரம்',
+    contact_availability_label: 'தற்போது திட்டங்களில் ஈடுபட்டுள்ளோம்',
+    contact_availability_text: 'RKN Associates தற்போது முக்கிய திட்டங்களில் பணியாற்றி வருகிறது; இந்த நேரத்தில் புதிய திட்டங்களை ஏற்க இயலவில்லை.',
     contact_visit_title: 'எங்கள் பட்டறைக்கு வாருங்கள்',
     contact_directions: 'வழிகாட்டி',
     contact_hours_label: 'வேலை நேரம்',
@@ -857,7 +861,7 @@ window.RKN_I18N = {
     // Contact page
     contact_intro_1: 'எங்களுடன்',
     contact_intro_2: 'நேரடியாக பேசுங்கள்.',
-    contact_intro_desc: 'தொலைபேசியை எடுங்கள், செய்தி அனுப்புங்கள், அல்லது படிவத்தை சமர்ப்பியுங்கள் — உங்களுக்கு எது வசதியானது. வேலை நாட்களில் 24 மணி நேரத்திற்குள் பதிலளிக்கிறோம்.',
+    contact_intro_desc: 'RKN Associates தற்போது முக்கிய திட்டங்களில் ஈடுபட்டுள்ளது; இந்த நேரத்தில் புதிய திட்டங்களை ஏற்க இயலவில்லை. தீவிரமான விசாரணைகளுக்கு iamhajihaz@gmail.com என்ற மின்னஞ்சலில் தொடர்பு கொள்ளுங்கள்; உடனடி பதில் வழங்க முயற்சிப்போம்.',
     contact_phone_primary_label: 'முதன்மை · நேரடி',
     contact_phone_secondary_label: 'அலுவலக லேண்ட்லைன்',
     contact_phone_tertiary_label: 'இரண்டாம் மொபைல்',
@@ -903,9 +907,9 @@ window.RKN_I18N = {
     projects_hero_loading: 'போர்ட்ஃபோலியோ ஏற்றப்படுகிறது…',
 
     // Contact page hero
-    contact_hero_new_1: 'ஒரு அழைப்பு.',
-    contact_hero_new_2: 'ஒரு தள வருகை.',
-    contact_hero_new_3: 'ஒரே தரம்.',
+    contact_hero_new_1: 'தற்போது திட்டங்களில் ஈடுபட்டுள்ளோம்.',
+    contact_hero_new_2: 'முக்கிய திட்டங்களில் கவனம்.',
+    contact_hero_new_3: 'புதிய திட்டங்கள் தற்போது இல்லை.',
     contact_hero_stat_1: 'திருவல்லிக்கேணியில் பட்டறை',
     contact_hero_stat_2: '24 மணி நேரத்திற்குள் பதில்',
     contact_hero_stat_3: '9+ நகரங்களில் திட்டங்கள்',

@@ -68,8 +68,8 @@ Upload the entire folder to any static host (Netlify, Vercel, GitHub Pages, or c
 
 ## Core Business Details
 
-- **Primary phone:** +91 94894 86081
-- **Secondary:** +91-44-2858 8653 (office landline), +91 94441 32481 (mobile)
+- **Primary mobile:** Removed from the public website while RKN Associates is engaged with major projects.
+- **Office landline:** +91-44-2858 8653 (office contact retained)
 - **Primary email:** iamhajihaz@gmail.com
 - **Secondary email:** arkn_associates@hotmail.com
 - **Address:** New No:21, Khana Bagh Street, Triplicane, Chennai 600005
@@ -89,7 +89,7 @@ Chrome, Safari, Edge, Firefox (last 2 versions) · iOS Safari 14+ · Android Chr
 ## Editing Later
 
 - **Text:** `assets/translations.js` — edit both `en:` and `ta:` blocks
-- **Phone/email:** search `+91 94894 86081` and `iamhajihaz@gmail.com` across files
+- **Contact:** use `iamhajihaz@gmail.com` for serious enquiries; retired mobile numbers should not be reintroduced to the public site.
 - **GST:** `assets/translations.js` → `footer_gst` key
 
 ---

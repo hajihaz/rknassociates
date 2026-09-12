@@ -200,13 +200,6 @@
     });
   }
 
-  // ============= WHATSAPP LINK BUILDER ============= //
-  function buildWhatsAppUrl(message) {
-    const num = '919489486081';
-    const msg = message || 'Hi, I\'m interested in discussing a project with RKN Associates.';
-    return `https://wa.me/${num}?text=${encodeURIComponent(msg)}`;
-  }
-
   // ============= QUOTE FORM SUBMISSION ============= //
   function initQuoteForm() {
     document.querySelectorAll('.cfc-form[data-quote-form], .rkn-form[data-quote-form]').forEach(form => {
@@ -242,10 +235,6 @@
           console.warn('Web3Forms submit failed:', err);
         }
 
-        // 2) Open WhatsApp in new tab with the same message (parallel channel)
-        const body = `*New Quote Request from rknassociates.com*%0A%0A*Name:* ${encodeURIComponent(data.name)}%0A*Phone:* ${encodeURIComponent(data.phone)}%0A*Project Type:* ${encodeURIComponent(data.type)}%0A*Timeline:* ${encodeURIComponent(data.timeline)}%0A%0A*Message:*%0A${encodeURIComponent(data.message)}`;
-        const waUrl = `https://wa.me/919489486081?text=${body}`;
-        window.open(waUrl, '_blank');
 
         // 3) Success state on-page (no navigation)
         if (successEl) {
@@ -284,7 +273,6 @@
 
     // Expose a couple utilities
     window.RKN = window.RKN || {};
-    window.RKN.buildWhatsAppUrl = buildWhatsAppUrl;
     window.RKN.applyLang = applyLang;
     window.RKN.getCurrentLang = getCurrentLang;
   }
