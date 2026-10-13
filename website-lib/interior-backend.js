@@ -10,7 +10,9 @@ function createBackend(query,readBlob) {
  async function published(){const result=await query('select snapshot from public.interior_publication where id=1');if(!result.rows[0]?.snapshot)throw new Error('content_missing');return result.rows[0].snapshot;}
  async function image(id,variant){
   if(typeof id!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id))return null;
-  const media=(await published()).media?.[id],path=media?.[variant==='thumb'?'thumb_path':'path'];
+  let media=(await published()).media?.[id];
+  if(!media){const pages=await query('select media from public.rkn_site_publication');for(const row of pages.rows){if(row.media?.[id]){media=row.media[id];break;}}}
+  const path=media?.[variant==='thumb'?'thumb_path':'path'];
   if(path!==id+'/'+(variant==='thumb'?'thumb':'full')+'.webp')return null;
   const file=await readBlob(path,{access:'private',useCache:false});
   if(!file||file.statusCode!==200)return null;
@@ -18,4 +20,4 @@ function createBackend(query,readBlob) {
  }
  return{published,image};
 }
-module.exports={...createBackend(sql=>database().query(sql),get),createBackend};
+module.exports={database,...createBackend(sql=>database().query(sql),get),createBackend};

@@ -25,24 +25,28 @@
 
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
-      if (dict[key] !== undefined) {
+      const custom = window.RKN_SITE_DATA?.values?.[(el.getAttribute('data-rkn-i18n') || document.body.dataset.rknPage + '-i18n-' + key) + '-' + lang];
+      const value = custom === undefined ? dict[key] : custom;
+      if (value !== undefined) {
         // Preserve HTML tags like <br> and <em>
         if (el.getAttribute('data-i18n-html') === 'true') {
-          el.innerHTML = dict[key];
+          el.innerHTML = value;
         } else {
-          el.textContent = dict[key];
+          el.textContent = value;
         }
       }
     });
 
     document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
       const key = el.getAttribute('data-i18n-placeholder');
-      if (dict[key] !== undefined) el.placeholder = dict[key];
+      const custom = window.RKN_SITE_DATA?.values?.[document.body.dataset.rknPage + '-i18n-' + key + '-' + lang];
+      if (custom !== undefined || dict[key] !== undefined) el.placeholder = custom ?? dict[key];
     });
 
     document.querySelectorAll('[data-i18n-aria]').forEach(el => {
       const key = el.getAttribute('data-i18n-aria');
-      if (dict[key] !== undefined) el.setAttribute('aria-label', dict[key]);
+      const custom = window.RKN_SITE_DATA?.values?.[document.body.dataset.rknPage + '-i18n-' + key + '-' + lang];
+      if (custom !== undefined || dict[key] !== undefined) el.setAttribute('aria-label', custom ?? dict[key]);
     });
 
     // Update language toggle UI state

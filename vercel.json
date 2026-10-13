@@ -1,28 +1,60 @@
 {
   "rewrites": [
     {
+      "source": "/",
+      "destination": "/api/site?page=home"
+    },
+    {
       "source": "/home",
-      "destination": "/index.html"
+      "destination": "/api/site?page=home"
+    },
+    {
+      "source": "/index",
+      "destination": "/api/site?page=home"
+    },
+    {
+      "source": "/index.html",
+      "destination": "/api/site?page=home"
     },
     {
       "source": "/about",
-      "destination": "/about.html"
+      "destination": "/api/site?page=about"
     },
     {
       "source": "/services",
-      "destination": "/services.html"
+      "destination": "/api/site?page=services"
     },
     {
       "source": "/projects",
-      "destination": "/projects.html"
+      "destination": "/api/site?page=projects"
     },
     {
       "source": "/contact",
-      "destination": "/contact.html"
+      "destination": "/api/site?page=contact"
     },
     {
       "source": "/interior",
-      "destination": "/interior.html"
+      "destination": "/api/site?page=interior"
+    },
+    {
+      "source": "/about.html",
+      "destination": "/api/site?page=about"
+    },
+    {
+      "source": "/services.html",
+      "destination": "/api/site?page=services"
+    },
+    {
+      "source": "/projects.html",
+      "destination": "/api/site?page=projects"
+    },
+    {
+      "source": "/contact.html",
+      "destination": "/api/site?page=contact"
+    },
+    {
+      "source": "/interior.html",
+      "destination": "/api/site?page=interior"
     }
   ],
   "headers": [
@@ -39,5 +71,10 @@
         }
       ]
     }
-  ]
+  ],
+  "functions": {
+    "api/site.js": {
+      "includeFiles": "website-lib/templates/**"
+    }
+  }
 }
