@@ -1,80 +1,76 @@
 {
-  "rewrites": [
-    {
-      "source": "/",
-      "destination": "/api/site?page=home"
-    },
-    {
-      "source": "/home",
-      "destination": "/api/site?page=home"
-    },
-    {
-      "source": "/index",
-      "destination": "/api/site?page=home"
-    },
-    {
-      "source": "/index.html",
-      "destination": "/api/site?page=home"
-    },
-    {
-      "source": "/about",
-      "destination": "/api/site?page=about"
-    },
-    {
-      "source": "/services",
-      "destination": "/api/site?page=services"
-    },
-    {
-      "source": "/projects",
-      "destination": "/api/site?page=projects"
-    },
-    {
-      "source": "/contact",
-      "destination": "/api/site?page=contact"
-    },
-    {
-      "source": "/interior",
-      "destination": "/api/site?page=interior"
-    },
-    {
-      "source": "/about.html",
-      "destination": "/api/site?page=about"
-    },
-    {
-      "source": "/services.html",
-      "destination": "/api/site?page=services"
-    },
-    {
-      "source": "/projects.html",
-      "destination": "/api/site?page=projects"
-    },
-    {
-      "source": "/contact.html",
-      "destination": "/api/site?page=contact"
-    },
-    {
-      "source": "/interior.html",
-      "destination": "/api/site?page=interior"
-    }
-  ],
-  "headers": [
-    {
-      "source": "/api/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "no-store"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        }
-      ]
-    }
-  ],
   "functions": {
     "api/site.js": {
       "includeFiles": "website-lib/templates/**"
     }
-  }
+  },
+  "routes": [
+    {
+      "src": "^/api/(.*)$",
+      "headers": {
+        "Cache-Control": "no-store",
+        "X-Content-Type-Options": "nosniff"
+      },
+      "continue": true
+    },
+    {
+      "src": "^/$",
+      "dest": "/api/site?page=home"
+    },
+    {
+      "src": "^/home$",
+      "dest": "/api/site?page=home"
+    },
+    {
+      "src": "^/index$",
+      "dest": "/api/site?page=home"
+    },
+    {
+      "src": "^/index\\.html$",
+      "dest": "/api/site?page=home"
+    },
+    {
+      "src": "^/about$",
+      "dest": "/api/site?page=about"
+    },
+    {
+      "src": "^/services$",
+      "dest": "/api/site?page=services"
+    },
+    {
+      "src": "^/projects$",
+      "dest": "/api/site?page=projects"
+    },
+    {
+      "src": "^/contact$",
+      "dest": "/api/site?page=contact"
+    },
+    {
+      "src": "^/interior$",
+      "dest": "/api/site?page=interior"
+    },
+    {
+      "src": "^/about\\.html$",
+      "dest": "/api/site?page=about"
+    },
+    {
+      "src": "^/services\\.html$",
+      "dest": "/api/site?page=services"
+    },
+    {
+      "src": "^/projects\\.html$",
+      "dest": "/api/site?page=projects"
+    },
+    {
+      "src": "^/contact\\.html$",
+      "dest": "/api/site?page=contact"
+    },
+    {
+      "src": "^/interior\\.html$",
+      "dest": "/api/site?page=interior"
+    },
+    {
+      "handle": "filesystem"
+    }
+  ]
 }
