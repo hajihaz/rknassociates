@@ -3,3 +3,6 @@
 zi*
 zik*
 .DS_Store
+
+node_modules/
+.env*
