@@ -6,3 +6,4 @@ zik*
 
 node_modules/
 .env*
+.vercel
