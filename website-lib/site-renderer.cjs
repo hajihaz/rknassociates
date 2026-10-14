@@ -28,6 +28,13 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  const config={values:changed,fields:fields.filter(f=>f.project&&changed[f.id]!==undefined),preview,adminOrigin,publicOrigin};
  const data=JSON.stringify(config).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
  html=html.replace('</head>','<script id="rkn-site-data" type="application/json">'+data+'</script>'+'</head>');
+ // E-commerce is a separately managed public module; storefront JS respects per-page switches.
+ const shopRoot='<div id="rkn-shop-root" data-page="'+escapeHtml(page?.page_slug||'home')+'"></div>';
+ if(/<footer\b/i.test(html))html=html.replace(/<footer\b/i,shopRoot+'<footer');
+ else html=html.replace('</body>',shopRoot+'</body>');
+ html=html.replace('</head>','<link rel="stylesheet" href="/assets/rkn-commerce.css"></head>');
+ html=html.replace('</body>','<script src="/assets/rkn-commerce.js" defer></script><script src="/assets/rkn-logo-admin.js" defer></script></body>');
+
  return html;
 }
 module.exports={renderSite,escapeHtml};

@@ -12,6 +12,7 @@ function createBackend(query,readBlob) {
   if(typeof id!=='string'||!/^[0-9a-f]{8}-[0-9a-f]{4}-[1-5][0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id))return null;
   let media=(await published()).media?.[id];
   if(!media){const pages=await query('select media from public.rkn_site_publication');for(const row of pages.rows){if(row.media?.[id]){media=row.media[id];break;}}}
+  if(!media){const row=(await query('select path,thumb_path,alt from public.rkn_shop_public_media($1)',[id])).rows[0];if(row)media=row;}
   const path=media?.[variant==='thumb'?'thumb_path':'path'];
   if(path!==id+'/'+(variant==='thumb'?'thumb':'full')+'.webp')return null;
   const file=await readBlob(path,{access:'private',useCache:false});
