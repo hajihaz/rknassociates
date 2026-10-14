@@ -1,0 +1,12 @@
+# Ship only the public website, its APIs, required assets, and templates.
+.ai
+AGENTS.md
+node_modules
+.vercel
+.env
+.env.*
+*.local
+*.zip
+ziVUm08C
+zik2RgrH
+zikppG7Q
