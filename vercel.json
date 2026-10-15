@@ -6,12 +6,25 @@
   },
   "routes": [
     {
+      "src": "^/(.*)$",
+      "headers": {
+        "X-Content-Type-Options": "nosniff",
+        "Referrer-Policy": "strict-origin-when-cross-origin",
+        "Permissions-Policy": "camera=(), microphone=(), geolocation=()"
+      },
+      "continue": true
+    },
+    {
       "src": "^/api/(.*)$",
       "headers": {
         "Cache-Control": "no-store",
         "X-Content-Type-Options": "nosniff"
       },
       "continue": true
+    },
+    {
+      "src": "^/sitemap\\.xml$",
+      "dest": "/api/sitemap"
     },
     {
       "src": "^/$",

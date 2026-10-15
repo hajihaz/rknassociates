@@ -27,6 +27,23 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  for(const id of page?.snapshot?.hiddenSections||page?.draft?.hiddenSections||[])html=html.replace(new RegExp('(<section\\b[^>]*data-rkn-section="'+id+'"[^>]*)(>)'),'$1 hidden$2');
  const config={values:changed,fields:fields.filter(f=>f.project&&changed[f.id]!==undefined),preview,adminOrigin,publicOrigin};
  const data=JSON.stringify(config).replace(/</g,'\\u003c').replace(/\u2028/g,'\\u2028').replace(/\u2029/g,'\\u2029');
+ // SEO metadata uses stable canonical routes even when older templates contain .html URLs.
+ const slug=page?.page_slug||'home';
+ // Vercel deployment is the canonical origin while the registrar's domain DNS remains unconfigured.
+ const canonical='https://rknassociates.vercel.app/'+slug;
+ if(/<link\s+rel=["']canonical["']/i.test(html)){
+  html=html.replace(/<link\s+rel=["']canonical["'][^>]*>/i,'<link rel="canonical" href="'+escapeHtml(canonical)+'">');
+ }else html=html.replace('</head>','<link rel="canonical" href="'+escapeHtml(canonical)+'"></head>');
+ if(/<meta\s+property=["']og:url["']/i.test(html))html=html.replace(/<meta\s+property=["']og:url["'][^>]*>/i,'<meta property="og:url" content="'+escapeHtml(canonical)+'">');
+ else html=html.replace('</head>','<meta property="og:url" content="'+escapeHtml(canonical)+'"></head>');
+ if(!/property=["']og:image["']/i.test(html))html=html.replace('</head>','<meta property="og:image" content="https://rknassociates.vercel.app/assets/logo-512.png"></head>');
+ if(!/name=["']twitter:card["']/i.test(html))html=html.replace('</head>','<meta name="twitter:card" content="summary"></head>');
+ const crumbs={ '@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:[
+  {'@type':'ListItem',position:1,name:'RKN Associates',item:'https://rknassociates.vercel.app/home'},
+  {'@type':'ListItem',position:2,name:slug.charAt(0).toUpperCase()+slug.slice(1),item:canonical}
+ ]};
+ // Fixed schema only; no customer data and no arbitrary admin-supplied markup.
+ html=html.replace('</head>','<script type="application/ld+json">'+JSON.stringify(crumbs).replace(/</g,'\\u003c')+'</script></head>');
  html=html.replace('</head>','<script id="rkn-site-data" type="application/json">'+data+'</script>'+'</head>');
  // E-commerce is a separately managed public module; storefront JS respects per-page switches.
  const shopRoot='<div id="rkn-shop-root" data-page="'+escapeHtml(page?.page_slug||'home')+'"></div>';
