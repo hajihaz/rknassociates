@@ -11,39 +11,74 @@ const prices=p=>{const box=el('div','rkn-shop-prices');box.append(el('strong','r
 let catalogue=[],enabled=false,cart={},categoryFilter='All';
 try{const raw=JSON.parse(localStorage.getItem('rkn-shop-cart')||'{}');if(raw&&typeof raw==='object'&&!Array.isArray(raw))for(const [id,n] of Object.entries(raw))if(uuid.test(id)&&Number.isInteger(n)&&n>0&&n<=10)cart[id]=n;}catch(_){}
 const save=()=>{try{localStorage.setItem('rkn-shop-cart',JSON.stringify(cart));}catch(_){}};
+// Privacy-respecting funnel hooks: no customer details, cookies or external analytics provider.
+const commerceEvent=(type,productId)=>{document.dispatchEvent(new CustomEvent('rkn:commerce',{detail:{type,page,...(productId?{productId}:{})}}));};
 function activeCart(){return catalogue.filter(p=>cart[p.id]>0&&p.stock>0);}
 function count(){return activeCart().reduce((n,p)=>n+Math.min(p.stock,cart[p.id]),0);}
-function add(p){if(p.stock<1)return;cart[p.id]=Math.min(10,p.stock,(cart[p.id]||0)+1);save();drawCartButton();}
+function add(p){if(p.stock<1)return;cart[p.id]=Math.min(10,p.stock,(cart[p.id]||0)+1);save();drawCartButton();commerceEvent('add_to_cart',p.id);}
 let cartButton=null;
 function drawCartButton(){if(!cartButton)return;const q=count();cartButton.textContent='View cart · '+q+' item'+(q===1?'':'s');cartButton.hidden=q===0;}
-function closePanel(){document.querySelector('.rkn-shop-overlay')?.remove();document.body.classList.remove('rkn-shop-locked');}
+let modalKeyHandler=null,focusBeforeModal=null;
+function closePanel(){
+ document.querySelector('.rkn-shop-overlay')?.remove();document.body.classList.remove('rkn-shop-locked');
+ if(modalKeyHandler){document.removeEventListener('keydown',modalKeyHandler);modalKeyHandler=null;}
+ if(focusBeforeModal&&focusBeforeModal.isConnected)focusBeforeModal.focus();focusBeforeModal=null;
+}
+
 function overlay(title){closePanel();const shade=el('div','rkn-shop-overlay');const box=el('div','rkn-shop-panel');box.setAttribute('role','dialog');box.setAttribute('aria-modal','true');box.setAttribute('aria-label',title);
-const head=el('div','rkn-shop-panel-head');head.append(el('h2','',title),button('×',closePanel,'rkn-shop-close'));box.append(head);shade.append(box);shade.addEventListener('click',e=>{if(e.target===shade)closePanel();});document.addEventListener('keydown',function esc(e){if(e.key==='Escape'){closePanel();document.removeEventListener('keydown',esc);}});document.body.append(shade);document.body.classList.add('rkn-shop-locked');return box;}
-function productDetail(p){const box=overlay(p.title);if(uuid.test(p.cover_media_id)){const hero=el('img','rkn-shop-detail-image');hero.src=media(p.cover_media_id,'full');hero.alt=p.title;hero.loading='lazy';box.append(hero);}const gallery=el('div','rkn-shop-detail-gallery');for(const id of (p.gallery||[]).filter(uuid.test).slice(0,8)){const image=el('img');image.src=media(id);image.alt=p.title;image.loading='lazy';gallery.append(image);}box.append(gallery);
+const head=el('div','rkn-shop-panel-head');head.append(el('h2','',title),button('×',closePanel,'rkn-shop-close'));box.append(head);shade.append(box);shade.addEventListener('click',e=>{if(e.target===shade)closePanel();});
+ focusBeforeModal=document.activeElement;
+ modalKeyHandler=function(e){
+  if(e.key==='Escape'){e.preventDefault();closePanel();return;}
+  if(e.key==='Tab'){
+   const controls=[...box.querySelectorAll('a[href],button:not([disabled]),input:not([disabled]):not([tabindex="-1"]),textarea:not([disabled]),select:not([disabled])')].filter(x=>x.getClientRects().length>0);
+   if(!controls.length)return;
+   const first=controls[0],last=controls[controls.length-1];
+   if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+   else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  }
+ };
+ document.addEventListener('keydown',modalKeyHandler);document.body.append(shade);document.body.classList.add('rkn-shop-locked');
+ const firstControl=box.querySelector('button');if(firstControl)firstControl.focus();return box;}
+function productDetail(p){const box=overlay(p.title);if(uuid.test(p.cover_media_id)){const hero=el('img','rkn-shop-detail-image');hero.src=media(p.cover_media_id,'full');hero.alt=p.title;hero.loading='lazy';hero.decoding='async';box.append(hero);}const gallery=el('div','rkn-shop-detail-gallery');for(const id of (p.gallery||[]).filter(uuid.test).slice(0,8)){const image=el('img');image.src=media(id);image.alt=p.title;image.loading='lazy';image.decoding='async';gallery.append(image);}box.append(gallery);
 box.append(el('p','rkn-shop-detail-description',p.description||'Contact RKN Associates for details of this product.'),prices(p),el('p','rkn-shop-stock',p.stock>0?'Available for order request':'Currently unavailable'));
 const actions=el('div','rkn-shop-panel-actions');const addButton=button('Add to cart',()=>{add(p);closePanel();openCart();},'rkn-shop-primary');addButton.disabled=p.stock<1;actions.append(addButton);box.append(actions);}
-function line(p){const row=el('div','rkn-shop-cart-line');if(uuid.test(p.cover_media_id)){const image=el('img');image.src=media(p.cover_media_id);image.alt=p.title;row.append(image);}const body=el('div');body.append(el('strong','',p.title),el('small','',fmt(p.price_paise)+' each'));const adjust=el('div','rkn-shop-quantity');adjust.append(button('−',()=>{cart[p.id]=Math.max(0,(cart[p.id]||0)-1);if(!cart[p.id])delete cart[p.id];save();openCart();},'rkn-shop-qty'),el('span','',String(cart[p.id])),button('+',()=>{cart[p.id]=Math.min(10,p.stock,(cart[p.id]||0)+1);save();openCart();},'rkn-shop-qty'));body.append(adjust);row.append(body,el('strong','',fmt(p.price_paise*Math.min(cart[p.id],p.stock))));return row;}
-function openCart(){const box=overlay('Your cart');const items=activeCart();if(!items.length){box.append(el('p','', 'Your cart is empty. Explore the collection to begin.'));return;}const list=el('div','rkn-shop-cart-list');items.forEach(p=>list.append(line(p)));box.append(list);
+function line(p){const row=el('div','rkn-shop-cart-line');if(uuid.test(p.cover_media_id)){const image=el('img');image.src=media(p.cover_media_id);image.alt=p.title;image.loading='lazy';image.decoding='async';row.append(image);}const body=el('div');body.append(el('strong','',p.title),el('small','',fmt(p.price_paise)+' each'));const adjust=el('div','rkn-shop-quantity');adjust.append(button('−',()=>{cart[p.id]=Math.max(0,(cart[p.id]||0)-1);if(!cart[p.id])delete cart[p.id];save();openCart();},'rkn-shop-qty'),el('span','',String(cart[p.id])),button('+',()=>{cart[p.id]=Math.min(10,p.stock,(cart[p.id]||0)+1);save();openCart();},'rkn-shop-qty'));body.append(adjust);row.append(body,el('strong','',fmt(p.price_paise*Math.min(cart[p.id],p.stock))));return row;}
+function openCart(){commerceEvent('cart_opened');const box=overlay('Your cart');const items=activeCart();if(!items.length){box.append(el('p','', 'Your cart is empty. Explore the collection to begin.'));return;}const list=el('div','rkn-shop-cart-list');items.forEach(p=>list.append(line(p)));box.append(list);
 const total=items.reduce((n,p)=>n+p.price_paise*Math.min(cart[p.id],p.stock),0);box.append(el('p','rkn-shop-total','Items subtotal: '+fmt(total)),el('p','rkn-shop-disclaimer','No payment now. Final price, delivery costs and taxes (if applicable) will be confirmed by our team.'));
 box.append(button('Continue to order request',openCheckout,'rkn-shop-primary rkn-shop-wide'));}
 function field(form,label,type,required,max){const wrap=el('label','rkn-shop-field');wrap.append(el('span','',label));const input=type==='textarea'?el('textarea'):el('input');if(type!=='textarea')input.type=type;input.required=!!required;if(max)input.maxLength=max;input.name=label;input.autocomplete=({'Full name':'name','Phone number':'tel','Email (optional)':'email','Delivery address':'street-address'})[label]||'off';wrap.append(input);form.append(wrap);return input;}
-function openCheckout(){const box=overlay('Place an order request');const items=activeCart();if(!items.length){box.append(el('p','','Your cart is empty.'));return;}
+function openCheckout(){commerceEvent('checkout_started');const box=overlay('Place an order request');const items=activeCart();if(!items.length){box.append(el('p','','Your cart is empty.'));return;}
 box.append(el('p','rkn-shop-disclaimer','Send your order details to RKN Associates. No payment is collected online. We will call you to confirm availability, delivery and the final price.'));
 const form=el('form','rkn-shop-checkout');const fullName=field(form,'Full name','text',true,100);const phone=field(form,'Phone number','tel',true,20);const email=field(form,'Email (optional)','email',false,150);const address=field(form,'Delivery address','textarea',true,500);address.rows=3;const notes=field(form,'Instructions (optional)','textarea',false,600);notes.rows=3;
+const trap=el('label','rkn-shop-honey');trap.setAttribute('aria-hidden','true');trap.textContent='Leave this website field blank';const trapInput=el('input');trapInput.type='text';trapInput.name='website';trapInput.autocomplete='off';trapInput.tabIndex=-1;trap.append(trapInput);form.append(trap);
 const consent=el('label','rkn-shop-consent');const check=el('input');check.type='checkbox';check.required=true;consent.append(check,el('span','','I agree to be contacted by RKN Associates about this order request.'));form.append(consent);
 const message=el('p','rkn-shop-form-message');message.setAttribute('role','alert');form.append(message);const submit=el('button','rkn-shop-btn rkn-shop-primary rkn-shop-wide','Submit order request — no payment');submit.type='submit';form.append(submit);
 form.addEventListener('submit',async e=>{e.preventDefault();if(!form.reportValidity())return;submit.disabled=true;submit.textContent='Submitting request…';message.textContent='';try{
-const response=await fetch('/api/shop',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({fullName:fullName.value.trim(),phone:phone.value.trim(),email:email.value.trim(),address:address.value.trim(),notes:notes.value.trim(),consent:check.checked,page,items:items.map(p=>({id:p.id,quantity:Math.min(cart[p.id],p.stock,10)}))})});
-const data=await response.json();if(!response.ok)throw new Error(data.error||'Unable to place order.');cart={};save();drawCartButton();box.replaceChildren(el('h2','','Request received'),el('p','rkn-shop-order-number','Order ID: '+data.orderNo),el('p','','Thank you! Our team will contact you to confirm your request. No payment has been collected.'),button('Close',closePanel,'rkn-shop-primary'));
-}catch(err){message.textContent=err.message||'Unable to submit request';submit.disabled=false;submit.textContent='Submit order request — no payment';}});
+const response=await fetch('/api/shop',{method:'POST',headers:{'Content-Type':'application/json'},signal:AbortSignal.timeout(16000),body:JSON.stringify({fullName:fullName.value.trim(),phone:phone.value.trim(),email:email.value.trim(),address:address.value.trim(),notes:notes.value.trim(),website:trapInput.value,consent:check.checked,page,items:items.map(p=>({id:p.id,quantity:Math.min(cart[p.id],p.stock,10)}))})});
+const data=await response.json();if(!response.ok)throw new Error(data.error||'Unable to place order.');cart={};save();drawCartButton();commerceEvent('request_submitted');box.replaceChildren(el('h2','','Request received'),el('p','rkn-shop-order-number','Order ID: '+data.orderNo),el('p','','Thank you! Our team will contact you to confirm your request. No payment has been collected.'),button('Close',closePanel,'rkn-shop-primary'));
+}catch(err){message.textContent=(err.name==='TimeoutError'||err.name==='AbortError')?'The request timed out. You can safely retry; identical requests are deduplicated.':err.message||'Unable to submit request';submit.disabled=false;submit.textContent='Submit order request — no payment';}});
 box.append(form);}
 function render(){root.replaceChildren();if(!enabled){if(cartButton){cartButton.remove();cartButton=null;}return;}
 const products=catalogue.filter(p=>p.pages.includes(page));const categories=[...new Set(products.map(p=>p.category||'General'))].sort();if(categoryFilter!=='All'&&!categories.includes(categoryFilter))categoryFilter='All';const section=el('section','rkn-shop-section');section.setAttribute('aria-label','Shop RKN interior products');const intro=el('div','rkn-shop-intro');intro.append(el('p','rkn-shop-kicker','RKN ASSOCIATES · COLLECTION'),el('h2','','Discover our products'),el('p','','Selected designs and materials for your space. Add items to your cart and send us an order request — no online payment required.'));section.append(intro);
 if(!products.length){section.append(el('p','rkn-shop-empty','Our collection for this page is being curated. Please contact us for custom enquiries.'));}
 if(categories.length>1){const filters=el('div','rkn-shop-category-filters');filters.setAttribute('aria-label','Filter products by category');for(const name of ['All',...categories]){const b=button(name,()=>{categoryFilter=name;render();},name===categoryFilter?'rkn-shop-active':'');b.setAttribute('aria-pressed',String(name===categoryFilter));filters.append(b);}section.append(filters);}
 const visible=products.filter(p=>categoryFilter==='All'||(p.category||'General')===categoryFilter);
-const grid=el('div','rkn-shop-products');for(const p of visible){const card=el('article','rkn-shop-product');const pic=el('button','rkn-shop-product-photo');pic.type='button';pic.addEventListener('click',()=>productDetail(p));if(uuid.test(p.cover_media_id)){const image=el('img');image.src=media(p.cover_media_id);image.alt=p.title;image.loading='lazy';pic.append(image);}card.append(pic);const content=el('div','rkn-shop-product-content');if(p.featured)content.append(el('span','rkn-shop-featured','FEATURED'));content.append(el('small','rkn-shop-product-category',p.category||'General'),el('h3','',p.title),el('p','rkn-shop-excerpt',(p.description||'Discover this product with RKN Associates.').slice(0,135)),prices(p));const actions=el('div','rkn-shop-product-actions');actions.append(button('View details',()=>productDetail(p)));const addButton=button(p.stock>0?'Add to cart':'Out of stock',()=>add(p),'rkn-shop-primary');addButton.disabled=p.stock<1;actions.append(addButton);content.append(actions);card.append(content);grid.append(card);}section.append(grid);root.append(section);
+const grid=el('div','rkn-shop-products');for(const p of visible){const card=el('article','rkn-shop-product');const pic=el('button','rkn-shop-product-photo');pic.type='button';pic.addEventListener('click',()=>productDetail(p));if(uuid.test(p.cover_media_id)){const image=el('img');image.src=media(p.cover_media_id);image.alt=p.title;image.loading='lazy';image.decoding='async';image.width=480;image.height=320;pic.append(image);}card.append(pic);const content=el('div','rkn-shop-product-content');if(p.featured)content.append(el('span','rkn-shop-featured','FEATURED'));content.append(el('small','rkn-shop-product-category',p.category||'General'),el('h3','',p.title),el('p','rkn-shop-excerpt',(p.description||'Discover this product with RKN Associates.').slice(0,135)),prices(p));const actions=el('div','rkn-shop-product-actions');actions.append(button('View details',()=>productDetail(p)));const addButton=button(p.stock>0?'Add to cart':'Out of stock',()=>add(p),'rkn-shop-primary');addButton.disabled=p.stock<1;actions.append(addButton);content.append(actions);card.append(content);grid.append(card);}section.append(grid);root.append(section);
 if(!cartButton){cartButton=button('View cart',openCart,'rkn-shop-cart-float');document.body.append(cartButton);}drawCartButton();}
-async function load(){try{const res=await fetch('/api/shop?page='+encodeURIComponent(page),{cache:'no-store'});if(!res.ok)throw new Error('Catalogue unavailable');const result=await res.json();enabled=!!result.enabled;catalogue=Array.isArray(result.products)?result.products.filter(p=>uuid.test(p.id)&&Array.isArray(p.pages)):[];render();}catch(_){root.replaceChildren();}}
-load();document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible')load();});
+let lastLoad=0,loadingCatalogue=false,hasLoadedCatalogue=false;
+async function load(){
+ if(loadingCatalogue)return;loadingCatalogue=true;
+ try{
+  const res=await fetch('/api/shop?page='+encodeURIComponent(page),{cache:'no-store',signal:AbortSignal.timeout(12000)});
+  if(!res.ok)throw Error('Catalogue temporarily unavailable.');
+  const result=await res.json();
+  enabled=!!result.enabled;catalogue=Array.isArray(result.products)?result.products.filter(p=>uuid.test(p.id)&&Array.isArray(p.pages)):[];
+  lastLoad=Date.now();hasLoadedCatalogue=true;render();
+ }catch(_){
+  // Keep the last successfully loaded page instead of flickering away an existing cart.
+  if(!hasLoadedCatalogue){root.replaceChildren();const notice=el('div','rkn-shop-load-error');notice.setAttribute('role','status');notice.append(el('p','','Our product collection could not load right now.'),button('Try loading products again',()=>void load()));root.append(notice);}
+ }finally{loadingCatalogue=false;}
+}
+void load();document.addEventListener('visibilitychange',()=>{if(document.visibilityState==='visible'&&Date.now()-lastLoad>30000)void load();});
 })();

@@ -22,7 +22,15 @@ module.exports=async function(req,res){
   if(!/^application\/json(?:;|$)/i.test(req.headers['content-type']||''))return res.status(415).json({error:'JSON required'});
   const salt=process.env.RKN_ORDER_RATE_SALT;
   if(!salt||salt.length<32)return res.status(503).json({error:'Ordering is temporarily unavailable; please call RKN'});
-  const body=typeof req.body==='string'?JSON.parse(req.body):req.body;
+  let body;
+  try {body=typeof req.body==='string'?JSON.parse(req.body):req.body;}
+  catch {return res.status(400).json({error:'Invalid order JSON.'});}
+  if(!body||typeof body!=='object'||Array.isArray(body))return res.status(400).json({error:'Invalid order payload.'});
+  // Inert honeypot: humans never see or focus this field, while automated form fillers often set it.
+  if(typeof body.website!=='string'&&body.website!==undefined)return res.status(400).json({error:'Invalid order payload.'});
+  if(body.website?.trim())return res.status(400).json({error:'Could not validate this order request.'});
+  if('website' in body){body={...body};delete body.website;}
+
   const bytes=Buffer.byteLength(JSON.stringify(body||{}));if(bytes>12000)return res.status(413).json({error:'Order too large'});
   const ip=String(req.headers['x-vercel-forwarded-for']||req.headers['x-forwarded-for']||req.socket?.remoteAddress||'unknown').split(',')[0].trim();
   const fingerprint=createHash('sha256').update(salt+':'+ip).digest('hex');

@@ -8,3 +8,9 @@
 .rkn-shop-prices .rkn-shop-price{margin:0}
 .rkn-shop-compare-price{font-size:14px;color:#8c8373}
 @media(max-width:580px){.rkn-shop-category-filters{justify-content:flex-start;flex-wrap:nowrap;overflow-x:auto;margin:0 -18px 24px;padding:0 18px 8px;scrollbar-width:thin}.rkn-shop-category-filters .rkn-shop-btn{white-space:nowrap;flex-shrink:0}}
+
+.rkn-shop-honey{position:absolute!important;left:-10000px!important;top:auto!important;width:1px!important;height:1px!important;overflow:hidden!important;pointer-events:none!important}
+
+.rkn-shop-load-error{padding:22px;text-align:center;border:1px solid #ded3bd;border-radius:10px;background:#fffdf8;color:#514735;font-size:14px;margin:28px auto;max-width:650px}
+.rkn-shop-overlay :focus-visible,.rkn-shop-btn:focus-visible{outline:3px solid #82601f;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.rkn-shop-product-photo img{transition:none!important;transform:none!important}}
