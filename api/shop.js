@@ -10,7 +10,7 @@ module.exports=async function(req,res){
    const page=String(req.query.page||'interior');
    if(!allowed.has(page))return res.status(400).json({error:'Unknown page'});
    const enabled=(await db.query('select enabled from public.rkn_shop_pages where page_slug=$1',[page])).rows[0]?.enabled||false;
-   const rows=(await db.query("select id,title,slug,description,sku,price_paise,stock,cover_media_id,gallery,pages,featured from public.rkn_shop_products where status='published' order by featured desc,updated_at desc limit 1000")).rows;
+   const rows=(await db.query("select id,title,slug,description,sku,price_paise,compare_paise,category,stock,cover_media_id,gallery,pages,featured from public.rkn_shop_products where status='published' order by featured desc,updated_at desc limit 1000")).rows;
    return res.status(200).json({enabled,page,products:rows});
   }
   if(req.method!=='POST')return res.status(405).json({error:'Method not allowed'});
