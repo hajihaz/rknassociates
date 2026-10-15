@@ -1,0 +1,33 @@
+/* RKN public accessibility refinements.
+ * Retains existing ivory / gold visual language while making text legible.
+ * Loaded after page-specific CSS by the public renderer.
+ */
+html{max-width:100%;overflow-x:clip}
+nav.rkn-nav{background:rgba(18,13,6,.94)}
+nav.rkn-nav.scrolled{background:rgba(18,13,6,.97)}
+nav.rkn-nav .nav-brand-tag{color:#f0d27c}
+nav.rkn-nav .nav-links a,
+nav.rkn-nav .lang-toggle button{color:#f8f3e9}
+nav.rkn-nav .nav-links a:hover,
+nav.rkn-nav .nav-links a.active{color:#f4d180;background:rgba(201,168,76,.12)}
+nav.rkn-nav .nav-phone{color:#f8f3e9}
+.site-footer .fm-item{color:#bcb3a6}
+.site-footer .footer-desc,
+.site-footer .footer-contact-item,
+.site-footer .footer-contact-item a,
+.site-footer .footer-links a{color:#ada69b}
+.site-footer .footer-copy{color:#b5aba0}
+.site-footer .footer-gst{color:#dfbd6a}
+.site-footer [data-i18n="footer_credit_prefix"]{color:#b5aba0}
+.as-badge [style*="--text-light"]{color:#64523d!important}
+.as-more-link{color:#624914}
+.filter-label,
+.gallery-reset{color:#695019}
+.filter-count{color:#62594c!important}
+@media(prefers-reduced-motion:reduce){
+  .footer-marquee,.footer-marquee-inner,.reveal{animation:none!important}
+}
+/* Selected language keeps dark lettering against its gold pill. */
+nav.rkn-nav .lang-toggle button.active{color:#120d06!important}
+/* Counts must not be faded: small 9px text requires full-opacity contrast. */
+.filter-count{opacity:1!important}

@@ -44,6 +44,15 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  ]};
  // Fixed schema only; no customer data and no arbitrary admin-supplied markup.
  html=html.replace('</head>','<script type="application/ld+json">'+JSON.stringify(crumbs).replace(/</g,'\\u003c')+'</script></head>');
+ // Add explicit accessible names to legacy inquiry form selects, without changing submitted field names.
+ const inquirySelectLabels={project_type:'Project type',timeline:'Project timeline',interest:'Interior product interest',project:'Interior project type'};
+ html=html.replace(/<select\b([^>]*)>/gi,(tag,attrs)=>{
+  if(/\baria-label\s*=|\baria-labelledby\s*=/i.test(attrs))return tag;
+  const name=attrs.match(/\bname\s*=\s*["']([^"']+)["']/i)?.[1];
+  const label=name&&inquirySelectLabels[name];
+  return label?'<select'+attrs+' aria-label="'+escapeHtml(label)+'">':tag;
+ });
+ html=html.replace('</head>','<link rel="stylesheet" href="/assets/rkn-accessibility.css"></head>');
  html=html.replace('</head>','<script id="rkn-site-data" type="application/json">'+data+'</script>'+'</head>');
  // E-commerce is a separately managed public module; storefront JS respects per-page switches.
  const shopRoot='<div id="rkn-shop-root" data-page="'+escapeHtml(page?.page_slug||'home')+'"></div>';
