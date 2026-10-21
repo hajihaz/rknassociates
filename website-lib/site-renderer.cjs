@@ -60,6 +60,8 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  else html=html.replace('</body>',shopRoot+'</body>');
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/rkn-commerce.css"></head>');
  html=html.replace('</body>','<script src="/assets/rkn-commerce.js" defer></script><script src="/assets/rkn-logo-admin.js" defer></script></body>');
+ // Public website analytics are not loaded in the authenticated CMS preview.
+ if(!preview)html=html.replace('</body>','<script src="/assets/customer-analytics.js" defer></script></body>');
 
  return html;
 }
