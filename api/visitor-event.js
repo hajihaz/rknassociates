@@ -3,7 +3,7 @@ const { database } = require('../website-lib/interior-backend');
 const ID=/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i;
 const PAGE=new Set(['home','about','services','projects','contact','interior']);
 const KIND=new Set(['visit','view','tap','active_time']);
-const KEY=/^[a-zA-Z0-9_:/-]{1,64}$/;
+const TARGET=new Set(['button','link','external-link','link:home','link:about','link:services','link:projects','link:contact','link:interior']);
 
 module.exports=async function visitorEvent(req,res){
  res.setHeader('Cache-Control','no-store');
@@ -22,7 +22,7 @@ module.exports=async function visitorEvent(req,res){
     ||typeof o.sessionId!=='string'||!ID.test(o.sessionId)
     ||typeof o.kind!=='string'||!KIND.has(o.kind)
     ||typeof o.path!=='string'||!PAGE.has(o.path)
-    ||(o.target!=null&&(typeof o.target!=='string'||!KEY.test(o.target)))
+    ||(o.target!=null&&(typeof o.target!=='string'||!TARGET.has(o.target)))
     ||(o.durationSeconds!=null&&(!Number.isInteger(o.durationSeconds)||o.durationSeconds<0||o.durationSeconds>180))
     ||(o.kind!=='tap'&&o.target!=null)
     ||(o.kind!=='active_time'&&o.durationSeconds!=null))

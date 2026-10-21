@@ -9,6 +9,7 @@
   return allow.has(p)?p:null;
  }
  var current=page();if(!current)return;
+ var targets=new Set(['button','link','external-link','link:home','link:about','link:services','link:projects','link:contact','link:interior']);
  var KEY='rkn-analytics-consent-v1',V='rkn-analytics-visitor-v1',S='rkn-analytics-session-v1';
  var dnt=navigator.doNotTrack==='1'||navigator.globalPrivacyControl===true;
  var choice=null;
@@ -46,7 +47,7 @@
   box.style.cssText='position:fixed;bottom:14px;left:14px;right:14px;z-index:2147483000;max-width:450px;margin:auto;background:#fff;color:#1d2430;padding:16px;border:1px solid #b0b0b0;border-radius:14px;box-shadow:0 9px 38px #0003;font:13px/1.55 system-ui,sans-serif';
   var title=document.createElement('strong');title.textContent='Help us improve RKN Associates';box.appendChild(title);
   var description=document.createElement('p');description.style.margin='8px 0';
-  description.textContent='Optional anonymous visits, navigation taps and time spent. No form contents or contact details. You can change your choice here at any time; declining stops future collection.';
+  description.textContent='Optional visits, navigation taps and time spent. No form contents or contact details. You can change your choice here at any time; declining stops future collection.';
   box.appendChild(description);
   function button(text,value){
    var b=document.createElement('button');b.type='button';b.textContent=text;
@@ -88,11 +89,13 @@
    if(!el||el.closest('form')||el.closest('#rkn-analytics-manage,#rkn-analytics-choice')||Date.now()-lastTap<400)return;
    lastTap=Date.now();
    var label=el.getAttribute('data-analytics')||'';
+   if(!targets.has(label))label='';
    if(!label&&el.tagName==='A'){
     try{var u=new URL(el.href);label=u.origin===location.origin?
-      'link:'+((u.pathname||'/').split('/')[1]||'home'):'external-link';}catch(_){label='link';}
+      'link:'+((u.pathname||'/').replace(/^\//,'').replace(/\.html$/,'')||'home'):'external-link';}catch(_){label='link';}
    }
-   label=(label||'button').replace(/[^a-zA-Z0-9_:/-]/g,'_').slice(0,64);
+   label=label||'button';
+   if(!targets.has(label))label=el.tagName==='A'?'link':'button';
    if(label)send('tap',label);
   },true);
   var since=document.visibilityState==='visible'?Date.now():0;
