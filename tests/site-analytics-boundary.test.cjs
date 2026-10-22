@@ -27,3 +27,14 @@ test('consent, origin and sensitive-route gates reject before DB access',async()
  }
  assert.equal(h.reads(),0);
 });
+
+test('production host never trusts a different localhost origin',async()=>{
+ const h=handler();
+ for(const origin of ['http://localhost:3000','http://rkn.test','https://rkn.test.evil.test']){
+  const r=res();await h.call({...req(valid),headers:{host:'rkn.test',origin}},r);
+  assert.equal(r.statusCode,403,origin);
+ }
+ assert.equal(h.reads(),0);
+ const accepted=res();await h.call({...req(valid),headers:{host:'localhost:3000',origin:'http://localhost:3000'}},accepted);
+ assert.equal(accepted.statusCode,204);
+});

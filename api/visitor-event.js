@@ -12,7 +12,8 @@ module.exports=async function visitorEvent(req,res){
  const host=String(req.headers['x-forwarded-host']||req.headers.host||'');
  const origin=String(req.headers.origin||'');
  // Same-origin only; never accept cross-site browser requests.
- if(!host||origin!=='https://'+host && origin!=='http://localhost:3000')
+ const local=host==='localhost:3000'||host==='127.0.0.1:3000';
+ if(!host||(origin!=='https://'+host && !(local&&origin==='http://'+host)))
   return res.status(403).end();
  if(Number(req.headers['content-length']||0)>1024)return res.status(413).end();
  const o=req.body;

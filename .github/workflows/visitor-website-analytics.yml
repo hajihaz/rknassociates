@@ -1,0 +1,18 @@
+name: RKN visitor analytics privacy regression
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+permissions:
+  contents: read
+jobs:
+  privacy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: node --test tests/site-analytics-boundary.test.cjs tests/site-analytics-consent.test.cjs tests/site-analytics-renderer.test.cjs
+      - run: node --check tests/site-analytics-real-browser.mjs
