@@ -990,6 +990,8 @@ html[lang="ta"] .rkn-form label {
   body {
     cursor: url('./hvd-cursor.svg') 2 2, auto;
   }
+  /* Safari may resolve anchor cursors to `auto`; keep the native hand explicit. */
+  a[href] { cursor: pointer; }
 }
 
 /* ============= SPOTLIGHT GLOW (on dark sections) ============= */
