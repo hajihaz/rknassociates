@@ -289,7 +289,7 @@
 })();
 
 /* =========================================================
-   v5 ADDITIONS — Cursor, Tilt, Spotlight, Stamp, About Hero Reveal
+   v5 ADDITIONS — Tilt, Spotlight, Stamp, About Hero Reveal
    ========================================================= */
 (function() {
   'use strict';
@@ -297,61 +297,6 @@
   // Utility: detect touch/pointer coarse devices
   const isTouch = window.matchMedia('(hover: none), (pointer: coarse)').matches;
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  // ============= CUSTOM GOLD RING CURSOR (desktop only) =============
-  function initCursor() {
-    if (isTouch || reduceMotion) return;
-    if (document.querySelector('.rkn-cursor-ring')) return;
-
-    const ring = document.createElement('div');
-    ring.className = 'rkn-cursor-ring';
-    document.body.appendChild(ring);
-
-    const dot = document.createElement('div');
-    dot.className = 'rkn-cursor-dot';
-    document.body.appendChild(dot);
-
-    document.body.classList.add('cursor-enabled');
-
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
-
-    document.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      dot.style.transform = `translate(${mouseX}px, ${mouseY}px) translate(-50%, -50%)`;
-      ring.classList.add('visible');
-      dot.classList.add('visible');
-    });
-
-    document.addEventListener('mouseleave', () => {
-      ring.classList.remove('visible');
-      dot.classList.remove('visible');
-    });
-
-    function updateRing() {
-      const dx = mouseX - ringX;
-      const dy = mouseY - ringY;
-      ringX += dx * 0.18;
-      ringY += dy * 0.18;
-      ring.style.transform = `translate(${ringX}px, ${ringY}px) translate(-50%, -50%)`;
-      requestAnimationFrame(updateRing);
-    }
-    requestAnimationFrame(updateRing);
-
-    // Hover states on interactive elements
-    const hoverSelectors = 'a, button, .filter-chip, .btn-gold, .btn-outline-dark, .btn-outline-ivory, .nav-hamburger, .lang-toggle button, input[type="submit"], .wa-block, .mo-directions, .faq-q, .gallery-item, .landmark-tile, .polaroid, .award-card-new, .leader-card';
-    document.addEventListener('mouseover', (e) => {
-      if (e.target.closest && e.target.closest(hoverSelectors)) {
-        ring.classList.add('hovering');
-      }
-    });
-    document.addEventListener('mouseout', (e) => {
-      if (e.target.closest && e.target.closest(hoverSelectors)) {
-        ring.classList.remove('hovering');
-      }
-    });
-  }
 
   // ============= SPOTLIGHT GLOW (dark sections) =============
   function initSpotlight() {
@@ -436,7 +381,6 @@
 
   // ============= INITIALIZATION =============
   function initV5() {
-    initCursor();
     initSpotlight();
     initTilt();
     initStamp();

@@ -983,65 +983,13 @@ html[lang="ta"] .rkn-form label {
    v5 ADDITIONS — Cursor, Tilt, Spotlight, Hero shared utilities
    ========================================================= */
 
-/* ============= CUSTOM GOLD RING CURSOR ============= */
-/* Desktop only - pointer devices with fine input */
-@media (hover: hover) and (pointer: fine) {
-  body.cursor-enabled,
-  body.cursor-enabled * {
-    cursor: none !important;
+/* ============= HVD ARCHITECTURAL ARROW CURSOR ============= */
+/* A static, high-contrast pointer on fine-input desktops only. Keep native
+   hands, I-beams, resize cursors and grab/grabbing on interactive controls. */
+@media (hover: hover) and (pointer: fine) and (forced-colors: none) {
+  body {
+    cursor: url('./hvd-cursor.svg') 2 2, auto;
   }
-
-  .rkn-cursor-ring {
-    position: fixed;
-    top: 0; left: 0;
-    width: 24px; height: 24px;
-    border: 1.5px solid var(--gold, #c9a84c);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    transition: width 0.25s ease, height 0.25s ease, background 0.25s ease, border-color 0.25s ease, opacity 0.2s ease;
-    mix-blend-mode: difference;
-    opacity: 0;
-    will-change: transform;
-  }
-  .rkn-cursor-ring.visible { opacity: 1; }
-
-  .rkn-cursor-dot {
-    position: fixed;
-    top: 0; left: 0;
-    width: 4px; height: 4px;
-    background: var(--gold, #c9a84c);
-    border-radius: 50%;
-    pointer-events: none;
-    z-index: 99999;
-    transform: translate(-50%, -50%);
-    opacity: 0;
-    transition: opacity 0.2s ease;
-    will-change: transform;
-  }
-  .rkn-cursor-dot.visible { opacity: 1; }
-
-  /* Hover state — expands */
-  .rkn-cursor-ring.hovering {
-    width: 48px;
-    height: 48px;
-    background: rgba(201, 168, 76, 0.15);
-    border-color: var(--gold, #c9a84c);
-  }
-
-  /* Hide when over form fields — native cursor is better there */
-  body.cursor-enabled input:hover,
-  body.cursor-enabled textarea:hover,
-  body.cursor-enabled select:hover {
-    cursor: text !important;
-  }
-}
-
-/* Accessibility — respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .rkn-cursor-ring, .rkn-cursor-dot { display: none !important; }
-  body.cursor-enabled, body.cursor-enabled * { cursor: auto !important; }
 }
 
 /* ============= SPOTLIGHT GLOW (on dark sections) ============= */
