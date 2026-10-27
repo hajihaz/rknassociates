@@ -54,6 +54,10 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  });
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/rkn-accessibility.css"></head>');
  html=html.replace('</head>','<script id="rkn-site-data" type="application/json">'+data+'</script>'+'</head>');
+ // The Interior collection renders client-side. Give it a stable, accessible page-level heading.
+ if(!preview&&slug==='interior'&&!/<h1\b/i.test(html)){
+  html=html.replace(/<main\b/i,'<h1 class="rkn-screen-reader-only">RKN Associates Interior Collection</h1><main');
+ }
  // E-commerce is a separately managed public module; storefront JS respects per-page switches.
  const shopRoot='<div id="rkn-shop-root" data-page="'+escapeHtml(page?.page_slug||'home')+'"></div>';
  if(/<footer\b/i.test(html))html=html.replace(/<footer\b/i,shopRoot+'<footer');
@@ -61,6 +65,15 @@ function renderSite(template,page,global,manifest,{preview=false,adminOrigin='',
  html=html.replace('</head>','<link rel="stylesheet" href="/assets/rkn-commerce.css"></head>');
  html=html.replace('</body>','<script src="/assets/rkn-commerce.js" defer></script><script src="/assets/rkn-logo-admin.js" defer></script></body>');
  // Public website analytics are not loaded in the authenticated CMS preview.
+ if(!preview){
+  const installMeta='<link rel="manifest" href="/manifest.webmanifest">'+
+   '<meta name="apple-mobile-web-app-capable" content="yes">'+
+   '<meta name="apple-mobile-web-app-status-bar-style" content="default">'+
+   '<meta name="apple-mobile-web-app-title" content="RKN">'+
+   '<link rel="apple-touch-icon" sizes="180x180" href="/pwa/apple-touch-icon.png">';
+  if(!/rel=["']manifest["']/i.test(html))html=html.replace('</head>',installMeta+'</head>');
+  html=html.replace('</body>','<script src="/assets/rkn-pwa.js" defer></script></body>');
+ }
  if(!preview)html=html.replace('</body>','<script src="/assets/customer-analytics.js" defer></script></body>');
 
  return html;

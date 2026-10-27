@@ -35,7 +35,7 @@
   var control=document.createElement('button');
   control.id='rkn-analytics-manage';control.type='button';
   control.textContent='Privacy settings';
-  control.setAttribute('aria-label','Change optional website analytics consent');
+  control.setAttribute('aria-label','Privacy settings — change optional website analytics consent');
   control.style.cssText='position:fixed;bottom:10px;right:10px;z-index:2147482999;background:#fff;color:#1d2430;border:1px solid #aaa;border-radius:12px;padding:6px 10px;font:12px system-ui,sans-serif;cursor:pointer';
   control.addEventListener('click',prompt);
   document.body.appendChild(control);

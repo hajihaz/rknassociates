@@ -31,3 +31,6 @@ nav.rkn-nav .nav-phone{color:#f8f3e9}
 nav.rkn-nav .lang-toggle button.active{color:#120d06!important}
 /* Counts must not be faded: small 9px text requires full-opacity contrast. */
 .filter-count{opacity:1!important}
+
+/* Accessible document heading for the client-rendered Interior collection. */
+.rkn-screen-reader-only{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;clip-path:inset(50%)!important;white-space:nowrap!important;border:0!important;padding:0!important;margin:-1px!important}

@@ -74,3 +74,8 @@ test('do-not-track prevents both prompt and analytics collection', () => {
   assert.equal(ctx.document.getElementById('rkn-analytics-choice'), null);
   assert.equal(ctx.document.getElementById('rkn-analytics-manage'), null);
 });
+test('analytics privacy button accessible name includes its visible label',()=>{
+ const ctx=pageHarness();
+ const manage=ctx.document.getElementById('rkn-analytics-manage');
+ assert.match(manage.getAttribute('aria-label'),/^Privacy settings/);
+});
